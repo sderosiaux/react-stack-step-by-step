@@ -2,7 +2,7 @@
 
 - Create a folder (!)
 - Create an `index.html` with some `<script>` to reference React scripts : `react.js` and `react-dom.js` (in that order, the latter depends on the former)
-- You can find those scripts either by download the [starter kit](https://facebook.github.io/react/downloads/react-0.14.3.zip) from Facebook and unzip it inside your folder, or by using the facebook cdn :
+- You can find those scripts either by downloading the [starter kit](https://facebook.github.io/react/downloads/react-0.14.3.zip) from Facebook and unzip it inside your folder, or by using the facebook cdn :
 ```html
 <script src="https://fb.me/react-0.14.3.min.js"></script>
 <script src="https://fb.me/react-dom-0.14.3.min.js"></script>
