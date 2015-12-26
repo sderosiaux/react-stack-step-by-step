@@ -1,12 +1,12 @@
 # 1. From scratch, old school : react in browser, no npm, no jsx
 
 - Create a folder (!)
-- Download the [starter kit](https://facebook.github.io/react/downloads/react-0.14.3.zip) from Facebook and unzip it inside, or use the facebook cdn :
+- Create an `index.html` with some `<script>` to reference React scripts : `react.js` and `react-dom.js` (in that order, the latter depends on the former)
+- You can find those scripts either by download the [starter kit](https://facebook.github.io/react/downloads/react-0.14.3.zip) from Facebook and unzip it inside your folder, or use the facebook cdn :
 ```html
 <script src="https://fb.me/react-0.14.3.min.js"></script>
 <script src="https://fb.me/react-dom-0.14.3.min.js"></script>
 ```
-- Create an `index.html` with some `<script>` to reference React scripts : `react.js` and `react-dom.js` (in that order, the latter depends on the former)
 - Create an `App.js` with some basic React code (for now, using ES5, no need of anything else) and add it into `index.html`
 
 ```js
