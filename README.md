@@ -8,6 +8,7 @@
 <script src="https://fb.me/react-dom-0.14.3.min.js"></script>
 ```
 - Create an `App.js` with some basic React code (for now, using ES5, no need of anything else) and add it into `index.html`
+- Open `index.html` in a browser, tada
 
 ```js
 // App.js
