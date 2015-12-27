@@ -43,7 +43,7 @@ That's definitely the biggest step early on due to all the things to install.
 ```json
 "dependencies": {
   "express": "^4.13.3",
-  react": "^0.14.3",
+  "react": "^0.14.3",
   "react-dom": "^0.14.3"
 },
 ```
