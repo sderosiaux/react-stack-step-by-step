@@ -11,7 +11,7 @@ Because the ES5 syntax is :
 
 ## What to do
 
-Learn ES6 and convert our main source `App.js` to Javascript ES6 using classes, arrow functions, a better variable scoping, destructing and so on).
+Learn ES6 and convert our main source `App.js` to Javascript ES6 using classes, arrow functions, a better variable scoping, destructuring and so on).
 
 ## Details
 
