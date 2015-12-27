@@ -49,6 +49,8 @@ Update the `"scripts"` part of `package.json` :
 },
 ```
 
+It's often a good usage to create scripts such as "command:variation". It has nothing special, it's just a small convention when it's a variation of the same command.
+
 ## Details
 
 - `"test": "echo \"Error: no test specified\" && exit 1"` is automatically created when you ran `npm init`.
