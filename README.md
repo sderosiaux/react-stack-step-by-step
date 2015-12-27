@@ -19,4 +19,12 @@ Because the non-jsx syntax is :
 
 ## What was done
 
-Instead of using `React.createElement("li", null, subject);`, we use `<li>{subject}</li>;`.
+Instead of using :
+```js
+React.createElement("li", null, subject);
+```
+
+We use : 
+```
+<li>{subject}</li>;
+```
