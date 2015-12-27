@@ -34,7 +34,7 @@ Caveats :
 - it's pure OS command line
 - don't reference global programs you think are installed, always use locally installed packages (in our case, webpack)
 - environment/OS specific (environment variables are not declared the same way in Unix/Windows)
-  - they are some way to uniformize that, we'll see later
+  - they are some ways to uniformize that, we'll see later
 
 ## What to do
 
@@ -60,11 +60,13 @@ We can use those scripts this way :
 # "run" is actually "run-script" but it's.. shorter!
 $ npm run start
 $ npm run test
+
 # start and test do not need "run"
 $ npm start
 $ npm test 
-$ npm start compile
+
 # way to pass arg to our command (`--` to avoid to pass the arg to npm itself)
+$ npm start compile
 $ npm start compile -- -w
 ```
 
