@@ -72,6 +72,7 @@ import ReactDOM from 'react-dom';
 
 - Build `bundle.js`
   - using `./node_modules/.bin/webpack` or `.\node_modules\.bin\webpack` according to your OS. (Note: we assume `webpack` is not installed globally, we are using the local version here)
+  - that will create the file in `src/` for now
 
 We didn't change our app logic, just the pipes !
 
@@ -80,7 +81,8 @@ We didn't change our app logic, just the pipes !
 ### webpack.config.js
 
 Short course on webpack loaders. Note the `include` path here :
-```
+
+```json
 loaders: [{
   test: /\.js$/,
   loader: 'babel',
@@ -100,21 +102,21 @@ $ webpack
 
 That creates a big js file of 677 kB with around 19666 lines for our simple app, arg. But that's because we are in developer mode by default, so a lot more is included into React (for debugging/error finding purpose).
 
-To shrink this down, we can use the `--production` flag of webpack first :
+To shrink this down, we can use the `-p` (`p` for `production`) flag of webpack first :
 
 ```
 $ webpack -p
 ```
 
-This reduces our `bundle.js` to 10 lines and 190 kB.
+This reduces our `bundle.js` to 10 lines and 190 kB by post-processing it (using `webpack.optimize.UglifyJsPlugin()` and `webpack.optimize.OccurenceOrderPlugin()`).
 
-But looking into it, we can see some obvious conditions :
+But looking into the generated bundle, we can still see some obvious conditions :
 
 ```
 if("production"!==t.env.NODE_ENV)...
 ```
 
-Generally, you build a bundle for the developer env, and one specific for the prod, so you know in advance what's the value of env.NODE_ENV, thus you know in advance if the test pass, thus you can tell that to webpack to delete useless code !
+Generally, you build a bundle for the developer environment (more debug info, not uglified), and one specific for the production (cryptic), so you know in advance what's the value of env.NODE_ENV, therefore you know in advance if the test pass, hence you can tell that to webpack to delete useless code !
 
 You can do the link with the environment variable `NODE_ENV` by adding that to your `webpack.config.js` :
 
@@ -123,6 +125,7 @@ plugins: [
     new webpack.DefinePlugin({
       'process.env': {
         'NODE_ENV': JSON.stringify(process.env.NODE_ENV)
+        // same as : 'NODE_ENV': "'" + process.env.NODE_ENV + "'"
       }
     })
   ]
@@ -130,7 +133,7 @@ plugins: [
 
 Then we use it like that :
 
-```
+```shell
 # unix
 NODE_ENV=production ./node_modules/.bin/webpack -p
 # windows :( (the lack of space is important)
