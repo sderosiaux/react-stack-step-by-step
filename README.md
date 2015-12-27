@@ -19,7 +19,9 @@ $ node src/server.js
 
 Then go to `http://localhost:3000/`.
 
-## server.js
+## Details
+
+We created a simple `server.js` that start an expressjs server listening on `localhost:3000` and serving files in the `src/` folder.
 
 ```js
 // the simplest http server ever
