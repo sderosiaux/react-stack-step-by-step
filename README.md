@@ -1,32 +1,23 @@
-# 2. +expressjs
+# 3. +jsx
 
-## Why a webserver ?
+## Why jsx ?
 
-In `1.` we simply used the `file:///` protocol to open our `index.html`, no webserver was necessary.
-But we will need it very soon (for browser security issues, `file:///` is very restrictive)
-and just because you will need one, one day.
+Because the non-jsx syntax is :
 
-This step is optional, you can use any other mean to serve the files if you know how-to (nginx, httpd, iis, express, node projects that starts an express on the fly etc.)
+- uglier
+- more verbose
+- more error prone
+- less descriptive at the first sight
 
 ## What to do
 
-In the project folder, initialize `package.json` and install [`express`](http://expressjs.com/).
-```
-$ npm init
-$ npm install --save express
-$ node src/server.js
-```
+- Add a reference to `babel-core`: `browser.js` in our `index.html` (from a cdn) : `https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.34/browser.min.js`.
+> Note: we are not using the last version of Babel (>= 6) because `browser.js` is not working yet with it. We are using the last of the 5.x branch, `5.8.34`.
 
-Then go to `http://localhost:3000/`.
+- Update `App.js` to use jsx syntax
+- go to `http://localhost:3000/`.
 
-## server.js
+## What was done
 
-```js
-// the simplest http server ever
-var express = require('express');
-var app = express();
-
-// just serve the `src` folder as it is
-app.use(express.static('src'));
-app.listen(3000);
+Instead of using `React.createElement("li", null, subject);`, we use `<li>{subject}</li>;`.
 ```
