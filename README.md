@@ -1,31 +1,32 @@
-# 1. From scratch, old school : react in browser, no npm, no jsx
+# 2. +expressjs
 
-- Create a folder (!)
-- Create an `index.html` with some `<script>` to reference React scripts : `react.js` and `react-dom.js` (in that order, the latter depends on the former)
-- You can find those scripts either by downloading the [starter kit](https://facebook.github.io/react/downloads/react-0.14.3.zip) from Facebook and unzip it inside your folder, or by using the facebook cdn :
-```html
-<script src="https://fb.me/react-0.14.3.min.js"></script>
-<script src="https://fb.me/react-dom-0.14.3.min.js"></script>
+## Why a webserver ?
+
+In `1.` we simply used the `file:///` protocol to open our `index.html`, no webserver was necessary.
+But we will need it very soon (for browser security issues, `file:///` is very restrictive)
+and just because you will need one, one day.
+
+This step is optional, you can use any other mean to serve the file if you know how-to (nginx, httpd, iis, express, node projects that starts an express on the fly etc.)
+
+## What to do
+
+In the project folder, initialize `package.json` and install [`express`](http://expressjs.com/).
 ```
-- Create an `App.js` with some basic React code (for now, using ES5, no need of anything else) and add it into `index.html`
-- Open `index.html` in a browser, tada
+$ npm init
+$ npm install --save express
+$ node src/server.js
+```
+
+Then go to `http://localhost:3000/`.
+
+## server.js
 
 ```js
-// App.js
+// the simplest http server ever
+var express = require('express');
+var app = express();
 
-"use strict";
-
-var App = React.createClass({
-  render: function() {
-    var items = this.props.subjects.map(function(subject) {
-      return React.createElement("li", null, subject);
-    });
-    return React.createElement("ul", null, "You like ", items);
-  }
-});
-
-var mountNode = document.getElementById("app");
-ReactDOM.render(React.createElement(App, { subjects: [ "Javascript", "Java" ] }), mountNode);
+// just serve the `src` folder as it is
+app.use(express.static('src'));
+app.listen(3000);
 ```
-
-
