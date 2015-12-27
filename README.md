@@ -82,7 +82,7 @@ We didn't change our app logic, just the pipes !
 
 Short course on webpack loaders. Note the `include` path here :
 
-```json
+```js
 loaders: [{
   test: /\.js$/,
   loader: 'babel',
@@ -112,7 +112,7 @@ This reduces our `bundle.js` to 10 lines and 190 kB by post-processing it (using
 
 But looking into the generated bundle, we can still see some obvious conditions :
 
-```
+```js
 if("production"!==t.env.NODE_ENV)...
 ```
 
@@ -126,6 +126,7 @@ plugins: [
       'process.env': {
         'NODE_ENV': JSON.stringify(process.env.NODE_ENV)
         // same as : 'NODE_ENV': "'" + process.env.NODE_ENV + "'"
+        // eg: 'NODE_ENV': "'production'"
       }
     })
   ]
@@ -133,7 +134,7 @@ plugins: [
 
 Then we use it like that :
 
-```shell
+```perl
 # unix
 NODE_ENV=production ./node_modules/.bin/webpack -p
 # windows :( (the lack of space is important)
