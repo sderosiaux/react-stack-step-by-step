@@ -1,32 +1,56 @@
-# 2. +expressjs
+# 2. +Javascript ES6
 
-## Why a webserver ?
+## Why should I use ES6 syntax ?
 
-In `1.` we simply used the `file:///` protocol to open our `index.html`, no webserver was necessary.
-But we will need it very soon (for browser security issues, `file:///` is very restrictive)
-and just because you will need one, one day.
+Because the ES5 syntax is :
 
-This step is optional, you can use any other mean to serve the files if you know how-to (nginx, httpd, iis, express, node projects that starts an express on the fly etc.)
+- uglier
+- more verbose
+- more error prone
+- less descriptive at the first sight
 
 ## What to do
 
-In the project folder, initialize `package.json` and install [`express`](http://expressjs.com/).
-```
-$ npm init
-$ npm install --save express
-$ node src/server.js
-```
+Learn ES6 and convert our main source `App.js` to Javascript ES6 using classes, arrow functions, a better variable scoping, destructing and so on).
 
-Then go to `http://localhost:3000/`.
+## Details
 
-## server.js
+From :
 
 ```js
-// the simplest http server ever
-var express = require('express');
-var app = express();
-
-// just serve the `src` folder as it is
-app.use(express.static('src'));
-app.listen(3000);
+var App = React.createClass({
+  render: function() {
+    var items = this.props.subjects.map(function(subject) {
+    return <li>{subject}</li>;
+  });
+  return <ul>You like {items}</ul>;
+});
 ```
+
+To :
+
+```js
+class App extends React.Component {
+  render() {
+    const items = this.props.subjects.map(subject => <li>{subject}</li>)
+    return <ul>You like {items}</ul>;
+  }
+}
+```
+
+Or to :
+
+```js
+const App = (props) => {
+  const items = props.subjects.map(subject => <li>{subject}</li>)
+  return <ul>You like {items}</ul>;
+}
+```
+
+Or to (!) :
+
+```js
+const App = ({ subjects }) => <ul>You like {subjects.map(s => <li>{s}</li>)}</ul>;
+```
+
+
