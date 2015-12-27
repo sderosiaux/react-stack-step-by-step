@@ -25,6 +25,6 @@ React.createElement("li", null, subject);
 ```
 
 We use : 
-```
+```js
 <li>{subject}</li>;
 ```
