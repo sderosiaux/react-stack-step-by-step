@@ -1,4 +1,4 @@
-# 2. +Javascript ES6
+# 4. +Javascript ES6
 
 ## Why should I use ES6 syntax ?
 
