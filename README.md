@@ -15,7 +15,7 @@ In one word : productivity.
 As soon as you put it in place, it will work forever without any modifications, for any of the future files you're going to add.
 It's just some pipes to plug together to make it work and last forever.
 
-> 2015-12-28: there is only one caveat : current React HR plugins do not handle stateless functional components created with the simpler syntax (`(props) => { <Foo>{props.name}</Foo> }`).
+> 2015-12-28: there is only one caveat : current React HR plugins do not handle stateless functional components created with the simpler syntax `(props) => { <Foo>{props.name}</Foo> }`.
 
 ## What to do
 
@@ -170,7 +170,7 @@ $ npm run compile && npm start
 <ul>You like: {subjects.map(s => <li>{s}</li>)}</ul>;
 ```
 to
-```
+```js
 <ul style={{padding:5}}>You don't like: {subjects.map(s => <li>{s}</li>)}</ul>;
 ```
 
@@ -195,7 +195,7 @@ Because `webpackHotMiddleware` subscribes to the bundle compilation events (no m
 
 ![hot-updates](https://cdn.rawgit.com/chtefi/react-boilerplates/7-react-hot-reloading/hot-updates.png)
 
----
+--
 
 ### `babel-plugin-react-transform` + `react-transform-hmr`
 
