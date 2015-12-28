@@ -171,7 +171,7 @@ $ npm run compile && npm start
 ```
 to
 ```js
-<ul style={{padding:5}}>You don\'t like: {subjects.map(s => <li>{s}</li>)}</ul>;
+<ul style={{padding:5}}>You love: {subjects.map(s => <li>{s}</li>)}</ul>;
 ```
 
 - Checkout the live update in the browser !
