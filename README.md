@@ -53,11 +53,6 @@ It's often a good usage to create scripts such as `command:variation`. It has no
 
 ## How to call the NPM scripts
 
-- `"test": "echo \"Error: no test specified\" && exit 1"` is automatically created when you ran `npm init`.
-- `"compile": "webpack"` references `node_modules/.bin/webpack`.
-
-We can use those scripts this way :
-
 ```perl
 # "run" is actually "run-script" but it's.. shorter!
 $ npm run start
@@ -73,6 +68,12 @@ $ npm start compile -- -w
 ```
 
 More infos on the `npm run` command at [https://docs.npmjs.com/misc/scripts](https://docs.npmjs.com/misc/scripts).
+
+> `"test": "echo \"Error: no test specified\" && exit 1"` is automatically created when you ran `npm init`.
+
+Very important to know :
+
+> `"compile": "webpack"` references `node_modules/.bin/webpack`.
 
 ## What's with webpack -w ?
 
