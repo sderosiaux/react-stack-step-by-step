@@ -41,9 +41,11 @@ We are going to add 4 packages :
 ```shell
 $ npm install --save-dev webpack-dev-middleware
 $ npm install --save-dev webpack-hot-middleware
-$ npm install --save-dev babel-plugin-react-transform
+$ npm install --save-dev babel-plugin-react-transform@beta
 $ npm install --save-dev react-transform-hmr
  ```
+
+2015-12-28: we explicitely ask for the beta (>=2.0.0) of `babel-plugin-react-transform` because for now, the latest published version does not work with Babel 6. But work has been done and is just waiting to be merged.
 
 ### Configure .babelrc
 
