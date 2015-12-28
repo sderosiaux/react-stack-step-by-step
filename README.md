@@ -1,4 +1,4 @@
-# 6. +Hot Reloading
+# 7. +Hot Reloading
 
 ## Why should I use Hot Reloading ?
 
@@ -148,10 +148,10 @@ entry: [
 ],
 ```
 
-The plugins will add the generic webpack HR code that will react to the updates.
+The plugins will add the generic webpack HR code that can handle module updates in the browser.
 
 The entrypoint `webpack-hot-middleware/client` simply refers to the file `node_modules/webpack-hot-middleware/client.js`.
-It is injected in the same bundle by webpack. This is the one that handle the SSE with `webpack-hot-middleware` and intercept the updates.
+It is there to be injected in the bundle by webpack. This is the one that handles the SSE with `webpack-hot-middleware` and intercept the updates.
 
 ## Details
 
@@ -170,7 +170,7 @@ Because `webpackHotMiddleware` subscribes to the bundle compilation events (no m
 
 *But* you'll suffer from some consequences : a bunch of `.js` and `.json` files in your project will appears each time a compilation occurs. They contain the delta sent to the client to update itself (webpack only sends the updated chunks, not the whole bundle each time). The advantage of using `webpack-dev-middleware` is that you won't see those files. They will be handled in-memory by itself. That's why you need to install this particular module too.
 
-![hot-updates](https://cdn.rawgit.com/chtefi/react-boilerplates/tree/7-react-hot-reloading/hot-updates.png)
+![hot-updates](https://cdn.rawgit.com/chtefi/react-boilerplates/7-react-hot-reloading/hot-updates.png)
 
 ### `babel-plugin-react-transform` + `react-transform-hmr`
 
