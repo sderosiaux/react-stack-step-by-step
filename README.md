@@ -49,6 +49,8 @@ Update the `"scripts"` part of `package.json` :
 },
 ```
 
+> `"test": "echo \"Error: no test specified\" && exit 1"` is automatically created when you ran `npm init`.
+
 It's often a good usage to create scripts such as `command:variation`. It has nothing special, it's just a small convention when it's a variation of the same command.
 
 ## How to call the NPM scripts
@@ -69,12 +71,8 @@ $ npm start compile -- -w
 
 More infos on the `npm run` command at [https://docs.npmjs.com/misc/scripts](https://docs.npmjs.com/misc/scripts).
 
-> `"test": "echo \"Error: no test specified\" && exit 1"` is automatically created when you ran `npm init`.
-
-Very important to know :
-
-> `"compile": "webpack"` references `node_modules/.bin/webpack`.
-> The script are automatically aware of the folder `node_modules/.bin`
+Very important to know : `"compile": "webpack"` references `node_modules/.bin/webpack`.
+When a script is executed, it's automatically aware of the folder `node_modules/.bin`.
 
 ## What's with webpack -w ?
 
