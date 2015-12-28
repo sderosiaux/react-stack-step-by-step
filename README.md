@@ -153,6 +153,23 @@ The plugins will add the generic webpack HR code that can handle module updates 
 The entrypoint `webpack-hot-middleware/client` simply refers to the file `node_modules/webpack-hot-middleware/client.js`.
 It is there to be injected in the bundle by webpack. This is the one that handles the SSE with `webpack-hot-middleware` and intercept the updates.
 
+## Make it work
+
+- Compile and run the server to serve the files :
+
+```
+$ npm run compile && npm start
+```
+
+- Open `localhost:3000`.
+- Change some React stuff :
+
+```<ul>You like: {subjects.map(s => <li>{s}</li>)}</ul>;```
+to
+```<ul style={{padding:5}}>You don't like: {subjects.map(s => <li>{s}</li>)}</ul>;```
+
+- Checkout the live update in the browser
+
 ## Details
 
 ### `webpack-dev-middleware` is optional, but...
@@ -203,13 +220,13 @@ data: {"action":"built","time":260,"hash":"6b625811aa23ea1ec259","warnings":[],"
 
 Then the frontend asks for the content :
 
-- GET localhost:3000/0.0119cbdcd4c2cf8d27c2.hot-update.js
+- `GET localhost:3000/0.0119cbdcd4c2cf8d27c2.hot-update.js`
 
 ```js
 {"h":"6b625811aa23ea1ec259","c":[0]}
 ```
 
-- GET localhost:3000/0119cbdcd4c2cf8d27c2.hot-update.json
+- `GET localhost:3000/0119cbdcd4c2cf8d27c2.hot-update.json`
 
 ```js
 webpackHotUpdate(0,{
@@ -221,3 +238,5 @@ webpackHotUpdate(0,{
 
   ...
 ```
+
+Those particular urls are handled by `webpack-dev-middleware` which is keeping those file in memory and serving them as any classic static file. They are created by the webpack plugin we added in `webpack.config.js` : `webpack.HotModuleReplacementPlugin()`.
