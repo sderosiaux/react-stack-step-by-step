@@ -1,4 +1,4 @@
-# 7. +Hot Reloading
+# 7. Let's add Hot Reloading
 
 ## Why should I use Hot Reloading ?
 
@@ -15,7 +15,7 @@ In one word : productivity.
 As soon as you put it in place, it will work forever without any modifications, for any of the future files you're going to add.
 It's just some pipes to plug together to make it work and last forever.
 
-2015-12-28: there is only one caveat : current React HR plugins do not handle stateless functional components created with the simpler syntax (`(props) => { <Foo>{props.name}</Foo> }`).
+> 2015-12-28: there is only one caveat : current React HR plugins do not handle stateless functional components created with the simpler syntax (`(props) => { <Foo>{props.name}</Foo> }`).
 
 ## What to do
 
@@ -161,14 +161,18 @@ It is there to be injected in the bundle by webpack. This is the one that handle
 $ npm run compile && npm start
 ```
 
-- Open `localhost:3000`.
+- Open `localhost:3000`
 - Change some React stuff :
 
-```<ul>You like: {subjects.map(s => <li>{s}</li>)}</ul>;```
+```js
+<ul>You like: {subjects.map(s => <li>{s}</li>)}</ul>;
+```
 to
-```<ul style={{padding:5}}>You don't like: {subjects.map(s => <li>{s}</li>)}</ul>;```
+```
+<ul style={{padding:5}}>You don't like: {subjects.map(s => <li>{s}</li>)}</ul>;
+```
 
-- Checkout the live update in the browser
+- Checkout the live update in the browser !
 
 ## Details
 
@@ -189,6 +193,8 @@ Because `webpackHotMiddleware` subscribes to the bundle compilation events (no m
 
 ![hot-updates](https://cdn.rawgit.com/chtefi/react-boilerplates/7-react-hot-reloading/hot-updates.png)
 
+---
+
 ### `babel-plugin-react-transform` + `react-transform-hmr`
 
 Without this transform, webpack won't be able to hot update React components, you'll get this in the browser console :
@@ -200,6 +206,8 @@ Without this transform, webpack won't be able to hot update React components, yo
 [HMR] The following modules couldn't be hot updated: (Full reload needed)
 [HMR]  - ./src/App.js
 ```
+
+---
 
 ### Hot reloading lifecycle
 
