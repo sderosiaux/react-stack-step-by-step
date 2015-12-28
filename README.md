@@ -1,116 +1,223 @@
-# 6. +NPM scripts
+# 6. +Hot Reloading
 
-## Why should I use NPM scripts ?
+## Why should I use Hot Reloading ?
 
-Because right now, we are using plain old command line in our process :
+In one word : productivity.
 
-```
-$ webpack
-$ node src/server.js
-```
+- you broke your F5 key since many years
+- we are not in 2000 anymore
+- you don't want to lose your app state if you just fixed a typo or a color
+- you don't want to develop blindly, then refresh, then try again. It's a backend thing.
+- that can display your compilation and runtime errors directly inside the browser
+  - you can do hot reloading with Javascript, CSS, anything
+- no caveat
 
-At the end, we will have several commands available, you don't want to type them each time (some will be more verbose).
+As soon as you put it in place, it will work forever without any modifications, for any of the future files you're going to add.
+It's just some pipes to plug together to make it work and last forever.
 
-NPM allows some command to be executed simply by adding some `"key": "command"` in our `package.json` that allows us to run it using :
-
-```
-npm run key
-```
-
-Advantages :
-
-- centralization
-- you'll never make typo anymore
-- you'll never forget they exist or wonder what are the parameters
-- you can just type `npm run` in a shell to see every available commands
-- you can still call them and add some parameters on the fly
-- they can run executables in `node_modules/.bin` without specifying it
-- you can change what the command does transparently 
-- you don't need anything else (such as `gulp`)
-- it's pure OS command line
-
-Caveats :
-
-- it's pure OS command line
-- don't reference global programs you think are installed, always use locally installed packages (in our case, webpack)
-- environment/OS specific (environment variables are not declared the same way in Unix/Windows)
-  - they are some ways to uniformize that, we'll see later
+2015-12-28: there is only one caveat : current React HR plugins do not handle stateless functional components created with the simpler syntax (`(props) => { <Foo>{props.name}</Foo> }`).
 
 ## What to do
 
-Update the `"scripts"` part of `package.json` :
+### Packages to install
 
-```json
-"scripts": {
-  "test": "echo \"Error: no test specified\" && exit 1",
-  "start": "node src/server.js",
-  "compile": "webpack",
-  "compile:prod": "set NODE_ENV=production&& webpack -p"
-},
+One part of the HR is handled by webpack itself.
+We just add some logic to manage the specific React components state (you don't want to lose existing state of your component when you edit something)
+
+We are going to add 4 packages :
+
+- [`webpack-dev-middleware`](https://github.com/webpack/webpack-dev-middleware)
+ - a classic expressjs middleware, where requests are passed on
+ - watch the sources to recompile the bundle if they are changed
+ - always serve the bundle up to date
+- [`webpack-hot-middleware`](https://github.com/glenjamin/webpack-hot-middleware)
+  - a classic expressjs middleware, where requests are passed on
+  - subscribes to bundle recompilation events, to notify the frontend that something has changed
+  - uses [SSE](http://www.html5rocks.com/en/tutorials/eventsource/basic) to communicate with it 
+- [`babel-plugin-react-transform`](https://github.com/gaearon/babel-plugin-react-transform) + [`react-transform-hmr`](https://github.com/gaearon/react-transform-hmr)
+  - [`babel-plugin-react-transform`](https://github.com/gaearon/babel-plugin-react-transform) can add any code in/around React component through Babel compilation
+  - [`react-transform-hmr`](https://github.com/gaearon/react-transform-hmr) is used by the former to add code to handle HR for React components
+
+```shell
+$ npm install --save-dev webpack-dev-middleware
+$ npm install --save-dev webpack-hot-middleware
+$ npm install --save-dev babel-plugin-react-transform
+$ npm install --save-dev react-transform-hmr
+ ```
+
+### Configure .babelrc
+
+We need to configure babel to automatically add some code in our React components when it is called by webpack to convert our React ES6/JSX code to ES5.
+
+The most basic configuration is :
+
+```js
+{
+  "presets": ["react", "es2015"],
+  "env": {
+    "development": {
+      "plugins": [
+        ["react-transform", {
+          "transforms": [{
+            "transform": "react-transform-hmr",
+            "imports": ["react"],
+            "locals": ["module"]
+          }]
+        }]
+      ]
+    }
+  }
+}
 ```
 
-It's often a good usage to create scripts such as "command:variation". It has nothing special, it's just a small convention when it's a variation of the same command.
+Basically, that adds the transform [`babel-plugin-react-transform`](https://github.com/gaearon/babel-plugin-react-transform) which is going to be used for the `development` NODE_ENV only. This transform will retrieve all React components and then loop through its `"transforms"` property to pass them each React component to let them add some custom code. In our case, [`react-transform-hmr`](https://github.com/gaearon/react-transform-hmr) will add some HR code inside the React components.
+
+[`babel-plugin-react-transform`](https://github.com/gaearon/babel-plugin-react-transform) handles as many transforms as we want, for instance :
+
+```js
+{
+  "presets": ["react", "es2015"],
+  "env": {
+    "development": {
+      "plugins": [
+        ["react-transform", {
+          "transforms": [{
+            "transform": "react-transform-hmr",
+            "imports": ["react"],
+            "locals": ["module"]
+          }, {
+            "transform": "react-transform-catch-errors",
+            "imports": ["react", "redbox-react"]
+          }]
+        }]
+      ]
+    }
+  }
+}
+```
+
+The React component code will pass through `react-transform-hmr` then through `react-transform-catch-errors`.
+Each of them will add its custom code.
+
+FYI, the latter is used to catch errors that are thrown in the `render()` method of the React component.
+Then it's using its `"imports"` property to redirect the error to a visual React component. Here `redbox-react` displays a big red screen of the death with the stacktrace for instance. But it could be anything else.
+
+### Handle server/client communication to send/receive HR updates
+
+Now, we need to add some communication pipe between our server that serves the resources and our frontend.
+
+The server will simply plug `webpack-dev-middleware` and `webpack-hot-middleware` into express.
+That will handle bundle auto-recompilation and transmission to the browser.
+
+```js
+var express = require('express');
+var webpack = require('webpack');
+var path = require('path');
+
+var webpackDevMiddleware = require("webpack-dev-middleware");
+var webpackHotMiddleware = require("webpack-hot-middleware");
+var webpackConfig = require('../webpack.config');
+
+var app = express();
+
+var compiler = webpack(webpackConfig);
+app.use(webpackDevMiddleware(compiler));
+app.use(webpackHotMiddleware(compiler));
+app.use(express.static('src'));
+
+app.listen(3000);
+```
+
+How the browser is going to handle the updates ?
+It's where webpack itself comes.
+
+We need to add some plugins to our `webpack.config.js` :
+
+```js
+new webpack.optimize.OccurenceOrderPlugin(),
+new webpack.HotModuleReplacementPlugin(),
+new webpack.NoErrorsPlugin()
+```
+
+And a new entrypoint :
+
+```js
+entry: [
+  'webpack-hot-middleware/client',
+  path.join(__dirname, 'src', 'App.js'),
+],
+```
+
+The plugins will add the generic webpack HR code that will react to the updates.
+
+The entrypoint `webpack-hot-middleware/client` simply refers to the file `node_modules/webpack-hot-middleware/client.js`.
+It is injected in the same bundle by webpack. This is the one that handle the SSE with `webpack-hot-middleware` and intercept the updates.
 
 ## Details
 
-- `"test": "echo \"Error: no test specified\" && exit 1"` is automatically created when you ran `npm init`.
-- `"compile": "webpack"` references `node_modules/.bin/webpack`.
+### `webpack-dev-middleware` is optional, but...
 
-We can use those scripts this way :
+The most important, the one that truly makes the HR works is `webpack-hot-middleware`. This is the one taking care of the communication between the server (where the bundle recompilation occurs) and the client.
 
-```shell
-# "run" is actually "run-script" but it's.. shorter!
-$ npm run start
-$ npm run test
+Without `webpack-dev-middleware`, you just need to launch the webpack watch yourself :
 
-# start and test do not need "run"
-$ npm start
-$ npm test 
+```js
+// app.use(webpackDevMiddleware(compiler));
+compiler.watch({}, function(){});
+app.use(webpackHotMiddleware(compiler));
+```
+Because `webpackHotMiddleware` subscribes to the bundle compilation events (no matter what started it), it will work.
 
-# way to pass arg to our command (`--` to avoid to pass the arg to npm itself)
-$ npm start compile
-$ npm start compile -- -w
+*But* you'll suffer from some consequences : a bunch of `.js` and `.json` files in your project will appears each time a compilation occurs. They contain the delta sent to the client to update itself (webpack only sends the updated chunks, not the whole bundle each time). The advantage of using `webpack-dev-middleware` is that you won't see those files. They will be handled in-memory by itself. That's why you need to install this particular module too.
+
+![hot-updates](https://cdn.rawgit.com/chtefi/react-boilerplates/tree/7-react-hot-reloading/hot-updates.png)
+
+### `babel-plugin-react-transform` + `react-transform-hmr`
+
+Without this transform, webpack won't be able to hot update React components, you'll get this in the browser console :
+
+```
+[HMR] bundle rebuilding
+[HMR] bundle rebuilt in 160ms
+[HMR] Checking for updates on the server...
+[HMR] The following modules couldn't be hot updated: (Full reload needed)
+[HMR]  - ./src/App.js
 ```
 
-More infos on the `npm run` command at [https://docs.npmjs.com/misc/scripts](https://docs.npmjs.com/misc/scripts).
+### Hot reloading lifecycle
 
-### webpack -w
-
-With `-w` (aka: `--watch`), each time you change your `App.js`, webpack will automatically re-bundles, you will just need to refresh manually your page in your browser to see the changes. That's not a good DX (Developer Experience), so we will soon see how to refresh automatically without intervention (Hot Reloading).
-
-```shell
-$ npm run compile -- -w
-
-> src@1.0.0 compile C:\wip\react-boilerplates
-> webpack "-w"
-
-Hash: 660d55efcda74dfba6ba
-Version: webpack 1.12.9
-Time: 1290ms
-    Asset    Size  Chunks             Chunk Names
-bundle.js  664 kB       0  [emitted]  main
-    + 158 hidden modules
-Hash: b238d3a837d37877fa61
-Version: webpack 1.12.9
-Time: 181ms
-    Asset    Size  Chunks             Chunk Names
-bundle.js  665 kB       0  [emitted]  main
-    + 158 hidden modules
+The frontend initialize a SSE request : (thanks to the code `webpack-hot-middleware/client.js` injected in the bundle)
+```
+GET localhost:3000/__webpack_hmr (never returns)
 ```
 
-### Available commands
+Then if a Javascript file changes server-side, because `webpack-dev-middleware` started a watch on the source, `webpack-hot-middleware` is notified and notify the frontend via SSE with the new module map, such as : 
 
-To remember what command is available, without checking out the content of `package.json`, you can just type `npm run`:
+```json
+data: {"action":"building"}
 
-```shell
-$ npm run
-Lifecycle scripts included in src:
-  test
-    echo "Error: no test specified" && exit 1
-  start
-    node src/server.js
+// few ms later ...
 
-available via `npm run-script`:
-  compile
-    webpack
+data: {"action":"built","time":260,"hash":"6b625811aa23ea1ec259","warnings":[],"errors":[],"modules":{"0":"multi main","1":"./~/fbjs/lib/invariant.js","2":"./~/react/lib/Object.assign.js","3":"./~/fbjs/lib/warning.js","4":"./~/fbjs/lib/ExecutionEnvironment.js","5":"./~/react/lib/ReactMount.js","6":"./~/react/lib/ReactElement.js", ...
+```
+
+Then the frontend asks for the content :
+
+- GET localhost:3000/0.0119cbdcd4c2cf8d27c2.hot-update.js
+
+```js
+{"h":"6b625811aa23ea1ec259","c":[0]}
+```
+
+- GET localhost:3000/0119cbdcd4c2cf8d27c2.hot-update.json
+
+```js
+webpackHotUpdate(0,{
+
+/***/ 97:
+/***/ function(module, exports, __webpack_require__) {
+
+  /* WEBPACK VAR INJECTION */(function(module) {'use strict';
+
+  ...
 ```

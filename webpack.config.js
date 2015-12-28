@@ -2,7 +2,10 @@ var path = require('path');
 var webpack = require('webpack');
 
 module.exports = {
-  entry: path.join(__dirname, 'src', 'App.js'),
+  entry: [
+    'webpack-hot-middleware/client',
+    path.join(__dirname, 'src', 'App.js'),
+  ],
   output: {
     path: path.join(__dirname, 'src'),
     filename: 'bundle.js'
@@ -19,6 +22,9 @@ module.exports = {
       'process.env': {
         'NODE_ENV': JSON.stringify(process.env.NODE_ENV)
       }
-    })
+    }),
+    new webpack.optimize.OccurenceOrderPlugin(),
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.NoErrorsPlugin()
   ]
 };
