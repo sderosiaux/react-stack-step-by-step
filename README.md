@@ -70,7 +70,7 @@ import ReactDOM from 'react-dom';
 }
 ```
 
-- Create a `webpack.config.js` on the project root folder for webpack to know how to build the bundle
+- Create a [`webpack.config.js`](https://github.com/chtefi/react-boilerplates/tree/5-react-webpack#webpackconfigjs) on the project root folder for webpack to know how to build the bundle
 
 - Start webpack to build the bundle
   - using `./node_modules/.bin/webpack` or `.\node_modules\.bin\webpack` according to your OS. (Note: we assume `webpack` is not installed globally, we are using the local version here)
@@ -78,9 +78,7 @@ import ReactDOM from 'react-dom';
 
 We didn't change our app logic, just the pipes !
 
-## Details
-
-### webpack.config.js
+## What's inside webpack.config.js
 
 Our simple config : 
 
@@ -107,7 +105,7 @@ module.exports = {
 
 Note the `include` path in `loaders` : it's telling webpack you don't want to compile the source in `node_modules` but only your own in `src/`. You assume your dependencies are already providing the ES5 version (not true for every projects).
 
-### Fat bundle size
+## How to create the fat bundle and shrink it down
 
 Just by typing :
 
