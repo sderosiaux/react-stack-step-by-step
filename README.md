@@ -70,7 +70,7 @@ import ReactDOM from 'react-dom';
 }
 ```
 
-- Create a [`webpack.config.js`](https://github.com/chtefi/react-boilerplates/tree/5-react-webpack#webpackconfigjs) on the project root folder for webpack to know how to build the bundle
+- Create a [`webpack.config.js`](https://github.com/chtefi/react-boilerplates/tree/5-react-webpack#whats-inside-webpackconfigjs) on the project root folder for webpack to know how to build the bundle
 
 - Start webpack to build the bundle
   - using `./node_modules/.bin/webpack` or `.\node_modules\.bin\webpack` according to your OS. (Note: we assume `webpack` is not installed globally, we are using the local version here)
