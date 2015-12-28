@@ -1,11 +1,11 @@
-# 6. +NPM scripts
+# 6. Let's add some NPM scripts
 
 ## Why should I use NPM scripts ?
 
 Because right now, we are using plain old command line in our process :
 
 ```
-$ webpack
+$ webpack [-p]
 $ node src/server.js
 ```
 
@@ -49,16 +49,16 @@ Update the `"scripts"` part of `package.json` :
 },
 ```
 
-It's often a good usage to create scripts such as "command:variation". It has nothing special, it's just a small convention when it's a variation of the same command.
+It's often a good usage to create scripts such as `command:variation`. It has nothing special, it's just a small convention when it's a variation of the same command.
 
-## Details
+## How to call them
 
 - `"test": "echo \"Error: no test specified\" && exit 1"` is automatically created when you ran `npm init`.
 - `"compile": "webpack"` references `node_modules/.bin/webpack`.
 
 We can use those scripts this way :
 
-```shell
+```perl
 # "run" is actually "run-script" but it's.. shorter!
 $ npm run start
 $ npm run test
@@ -74,11 +74,11 @@ $ npm start compile -- -w
 
 More infos on the `npm run` command at [https://docs.npmjs.com/misc/scripts](https://docs.npmjs.com/misc/scripts).
 
-### webpack -w
+## What's with webpack -w ?
 
 With `-w` (aka: `--watch`), each time you change your `App.js`, webpack will automatically re-bundles, you will just need to refresh manually your page in your browser to see the changes. That's not a good DX (Developer Experience), so we will soon see how to refresh automatically without intervention (Hot Reloading).
 
-```shell
+```perl
 $ npm run compile -- -w
 
 > src@1.0.0 compile C:\wip\react-boilerplates
@@ -98,7 +98,7 @@ bundle.js  665 kB       0  [emitted]  main
     + 158 hidden modules
 ```
 
-### Available commands
+## How to check the available commands
 
 To remember what command is available, without checking out the content of `package.json`, you can just type `npm run`:
 
