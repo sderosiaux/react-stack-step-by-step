@@ -1,16 +1,16 @@
-# 2. +expressjs
+# 2. Let's add expressjs
 
 ## Why a webserver ?
 
-In `1.` we simply used the `file:///` protocol to open our `index.html`, no webserver was necessary.
-But we will need it very soon (for browser security issues, `file:///` is very restrictive)
-and just because you will need one, one day.
+In the first step, we simply used the `file:///` protocol to open our `index.html`, no webserver was necessary.
+But we will need it very soon (for browser security issues, `file:///` is very restrictive, and for several cases, such as Hot Reloading).
 
-This step is optional, you can use any other mean to serve the files if you know how-to (nginx, httpd, iis, express, node projects that starts an express on the fly etc.)
+We are just using express to serve the files over the `http://` protocol, being less restrictive for our next step.
+You can use alternative such as `koa`, `connect`, `http-server`, or using directly `http` nodejs package.
 
 ## What to do
 
-In the project folder, initialize `package.json` and install [`express`](http://expressjs.com/).
+In the project folder, initialize `package.json` and install [`expressjs`](http://expressjs.com/).
 ```
 $ npm init
 $ npm install --save express
@@ -19,9 +19,9 @@ $ node src/server.js
 
 Then go to `http://localhost:3000/`.
 
-## Details
+## server.js
 
-We created a simple `server.js` that start an expressjs server listening on `localhost:3000` and serving files in the `src/` folder.
+We created a simple `server.js` that start an expressjs server listening on `localhost:3000` and serving files from the `src/` folder.
 
 ```js
 // the simplest http server ever
