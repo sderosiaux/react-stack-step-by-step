@@ -51,7 +51,7 @@ Update the `"scripts"` part of `package.json` :
 
 It's often a good usage to create scripts such as `command:variation`. It has nothing special, it's just a small convention when it's a variation of the same command.
 
-## How to call them
+## How to call the NPM scripts
 
 - `"test": "echo \"Error: no test specified\" && exit 1"` is automatically created when you ran `npm init`.
 - `"compile": "webpack"` references `node_modules/.bin/webpack`.
@@ -102,7 +102,7 @@ bundle.js  665 kB       0  [emitted]  main
 
 To remember what command is available, without checking out the content of `package.json`, you can just type `npm run`:
 
-```shell
+```perl
 $ npm run
 Lifecycle scripts included in src:
   test
