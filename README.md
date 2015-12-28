@@ -74,6 +74,7 @@ More infos on the `npm run` command at [https://docs.npmjs.com/misc/scripts](htt
 Very important to know :
 
 > `"compile": "webpack"` references `node_modules/.bin/webpack`.
+> The script are automatically aware of the folder `node_modules/.bin`
 
 ## What's with webpack -w ?
 
