@@ -4,10 +4,10 @@ var webpack = require('webpack');
 module.exports = {
   entry: [
     'webpack-hot-middleware/client',
-    path.join(__dirname, 'src', 'App.js'),
+    path.join(__dirname, 'src', 'index.js'),
   ],
   output: {
-    path: path.join(__dirname, 'src'),
+    path: path.join(__dirname, 'dist'),
     filename: 'bundle.js'
   },
   module: {
