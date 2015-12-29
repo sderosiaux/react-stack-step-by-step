@@ -24,6 +24,17 @@ Now, we need to fix some paths in our config files :
   - the entry is now `src/index.js` instead of `src/App.js`
   - the output is now in `dist/` instead of `src/`
 
+```js
+entry: [
+  'webpack-hot-middleware/client',
+  path.join(__dirname, 'src', 'index.js'),
+],
+output: {
+  path: path.join(__dirname, 'dist'),
+  filename: 'bundle.js'
+},
+```
+
 ## Our new entry point for webpack
 
 `src/index.js` is now our entry point, which contains only some `import`s and the mount of our main component :
@@ -45,13 +56,42 @@ All React components should be put in their own folder `components/`, to know th
 
 ## How index.js can still find bundle.js ?
 
-You noticed that our `index.html` still refers to `src="bundle.js"`, but this file is not in `src/` anymore (which is served by express `app.use(express.static('src'));`) but in `dist/`.
+You noticed that our `index.html` still refers to `src="bundle.js"`, but this file is not in `src/` anymore (which content is served by express `app.use(express.static('src'));`) but in `dist/`.
 
-It is find thanks to `webpack-dev-middleware`. This is the one that is serving the file.
+It is found thanks to `webpack-dev-middleware`. This is the one that is serving the file.
 We provided it the `webpack.config.js` reference, thus it knows the bundle is in `dist/`, therefore when it intercepts the request, it knows what is it and respond directly to the client.
 
 ```js
 var webpackConfig = require('../webpack.config.js');
 var compiler = webpack(webpackConfig);
 app.use(webpackDevMiddleware(compiler)); // he knows !
+```
+
+To recap :
+- `/index.html` is served thanks to `express.static`
+- `/bundle.js` is served thanks to `webpack-dev-middleware`
+
+Same root path `/` but different processors. That can lead some mistakes, this is why, very often, a `publicPath` is declared to serve the bundle :
+
+```js
+// webpack.config.js
+output: {
+  path: path.join(__dirname, 'dist'),
+  filename: 'bundle.js',
+  publicPath: '/static/'
+},
+```
+
+```js
+// server.js
+app.use(webpackDevMiddleware(compiler, { noInfo: true, publicPath: webpackConfig.output.publicPath }));
+```
+
+Instead of copy/paste the url, we reuse the `publicPath` declared in the config.
+
+> `noInfo: true` is to remove most of logs from `server.js`.
+
+```html
+<!-- index.html -->
+<script src="/static/bundle.js"></script>
 ```
