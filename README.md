@@ -1,4 +1,4 @@
-# 7. Let's add some structure
+# 8. Let's add some structure
 
 ## Why should I add some structure in my project ?
 
