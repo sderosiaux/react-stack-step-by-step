@@ -91,7 +91,7 @@ app.use(webpackDevMiddleware(compiler, { noInfo: true, publicPath: webpackConfig
 
 Instead of copy/paste the url, we reuse the `publicPath` declared in the config.
 
-> `noInfo: true` is to remove most of logs from `server.js`.
+> `noInfo: true` removes most logs from `server.js` console.
 
 ```html
 <!-- index.html -->
@@ -99,4 +99,5 @@ Instead of copy/paste the url, we reuse the `publicPath` declared in the config.
 ```
 
 Henceforth, `webpack-dev-middleware` will serve `/static/*` as a synonym for `dist/`.
+
 Note that it won't be possible to access `/bundle.js` anymore.
