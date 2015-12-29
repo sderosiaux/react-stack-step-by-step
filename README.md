@@ -73,7 +73,7 @@ To recap :
 - `/index.html` is served thanks to `express.static`
 - `/bundle.js` is served thanks to `webpack-dev-middleware`
 
-Same root path `/` but different processors. That can lead some mistakes, this is why, very often, a `publicPath` is declared to serve the bundle :
+Same root path `/` but different processors. That can lead to some mistakes, this is why, very often, a `publicPath` is declared to serve the bundle :
 
 ```js
 // webpack.config.js
@@ -97,3 +97,6 @@ Instead of copy/paste the url, we reuse the `publicPath` declared in the config.
 <!-- index.html -->
 <script src="/static/bundle.js"></script>
 ```
+
+Henceforth, `webpack-dev-middleware` will serve `/static/*` as a synonym for `dist/`.
+Note that it won't be possible to access `/bundle.js` anymore.
