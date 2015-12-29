@@ -67,6 +67,8 @@ var compiler = webpack(webpackConfig);
 app.use(webpackDevMiddleware(compiler)); // he knows !
 ```
 
+## We need to use `publicPath`
+
 To recap :
 - `/index.html` is served thanks to `express.static`
 - `/bundle.js` is served thanks to `webpack-dev-middleware`
