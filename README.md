@@ -12,13 +12,13 @@ I just added some new components in `src/components` to make some kind of pictur
 
 I did everything using HR only. I _never_ refreshed once my browser. Even when you create a new file and import it somewhere, it will be taken into account.
 
-Checkout the [source](https://cdn.rawgit.com/chtefi/react-boilerplates/9-react-content/src/components) if you just want to see some basic ES6 React components code.
+Checkout the [source](https://github.com/chtefi/react-boilerplates/tree/9-react-content/src/components) if you just want to see some basic ES6 React components code.
 
 ![Pixapixa](https://cdn.rawgit.com/chtefi/react-boilerplates/9-react-content/pixapixa.png)
 
 ## Furthermore
 
-While doing that, I've added new babel preset to handle ES6 spread notation : [http://babeljs.io/docs/plugins/preset-stage-2/](http://babeljs.io/docs/plugins/preset-stage-2/). It should be part of every boilerplates.
+While doing that, I've added new babel preset to handle ES2015 spread notation : [http://babeljs.io/docs/plugins/preset-stage-2/](http://babeljs.io/docs/plugins/preset-stage-2/). It should be part of every boilerplates.
 
 ```
 $ npm install --save-dev babel-preset-stage-2
