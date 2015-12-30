@@ -265,9 +265,10 @@ Those particular urls are handled by `webpack-dev-middleware` which is keeping t
 ### Side notes
 
 There are still some caveats with this way to do :
-– it doesn’t work for functional stateless React components `(props) => { <Foo>{props.name}</Foo> }`
-– `babel-plugin-react-transform` is simply an experiment, [maybe it will die](https://github.com/gaearon/babel-plugin-react-transform/issues/57#issuecomment-167677023)
-– @dan_abramov is working on [something different](https://twitter.com/dan_abramov/status/681813386095636480) to handle HR at the function level directly, to make it generic
-– another HR project React is [react-hot-loader](https://github.com/gaearon/react-hot-loader)
+
+- it doesn’t work for functional stateless React components `(props) => { <Foo>{props.name}</Foo> }`
+- `babel-plugin-react-transform` is simply an experiment, [maybe it will die](https://github.com/gaearon/babel-plugin-react-transform/issues/57#issuecomment-167677023)
+- @dan_abramov is working on [something different](https://twitter.com/dan_abramov/status/681813386095636480) to handle HR at the function level directly, to make it generic
+- another HR project React is [react-hot-loader](https://github.com/gaearon/react-hot-loader)
 
 Being quite generic, those explanations were posted on my blog too : [http://ctheu.com/2015/12/29/webpack-hot-reloading-and-react-how/](http://ctheu.com/2015/12/29/webpack-hot-reloading-and-react-how/).
