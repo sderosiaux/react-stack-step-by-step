@@ -224,12 +224,12 @@ Without this transform, webpack won't be able to hot update React components, yo
 
 ### Hot reloading lifecycle communication
 
-1. The frontend initialize a SSE request : (thanks to the code `webpack-hot-middleware/client.js` injected in the bundle)
+The frontend initialize a SSE request : (thanks to the code `webpack-hot-middleware/client.js` injected in the bundle)
 ```
 GET localhost:3000/__webpack_hmr (never returns)
 ```
 
-2. Then if a Javascript file changes server-side, because `webpack-dev-middleware` started a watch on the source, `webpack-hot-middleware` is notified and notify the frontend via SSE with the new module map, such as : 
+Then if a Javascript file changes server-side, because `webpack-dev-middleware` started a watch on the source, `webpack-hot-middleware` is notified and notify the frontend via SSE with the new module map, such as : 
 
 ```json
 data: {"action":"building"}
