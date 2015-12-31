@@ -52,8 +52,8 @@ We need to install 4 packages : 2 for webpack, 2 for React.
 
 ## Specific packages for React HR
 
-[`babel-plugin-react-transform`](https://github.com/gaearon/babel-plugin-react-transform)
-– it can add any code around React component methods during the Babel compilation ES6+JSX to ES5. We already have configured our babel loader in our webpack config:
+- [`babel-plugin-react-transform`](https://github.com/gaearon/babel-plugin-react-transform)
+  – it can add any code around React component methods during the Babel compilation ES6+JSX to ES5. We already have configured our babel loader in our webpack config:
 ```js
 module: {
   loaders: [{
@@ -64,8 +64,8 @@ module: {
 },
 ```
 
-[`react-transform-hmr`](https://github.com/gaearon/react-transform-hmr)
-– it is used by `babel-plugin-react-transform` to add specific code around the React components to properly handle HR and their current state
+- [`react-transform-hmr`](https://github.com/gaearon/react-transform-hmr)
+  – it is used by `babel-plugin-react-transform` to add specific code around the React components to properly handle HR and their current state
 
 That gives us :
 
