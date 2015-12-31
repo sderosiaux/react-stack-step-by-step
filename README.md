@@ -26,9 +26,9 @@ Now, let’s tackle the packages we need to install
 
 So, we already have a base project using :
 
-– webpack to compile our javascript bundle
-– React for our frontend ofc
-– a nodejs server that runs a http server using expressjs to serve our static content (html, js, css..) while we are developing
+- webpack to compile our javascript bundle
+- React for our frontend ofc
+- a nodejs server that runs a http server using expressjs to serve our static content (html, js, css..) while we are developing
 
 We now want to experiment HR.
 
@@ -53,7 +53,7 @@ We need to install 4 packages : 2 for webpack, 2 for React.
 ## Specific packages for React HR
 
 - [`babel-plugin-react-transform`](https://github.com/gaearon/babel-plugin-react-transform)
-  – it can add any code around React component methods during the Babel compilation ES6+JSX to ES5. We already have configured our babel loader in our webpack config:
+  - it can add any code around React component methods during the Babel compilation ES6+JSX to ES5. We already have configured our babel loader in our webpack config:
 ```js
 module: {
   loaders: [{
@@ -65,7 +65,7 @@ module: {
 ```
 
 - [`react-transform-hmr`](https://github.com/gaearon/react-transform-hmr)
-  – it is used by `babel-plugin-react-transform` to add specific code around the React components to properly handle HR and their current state
+  - it is used by `babel-plugin-react-transform` to add specific code around the React components to properly handle HR and their current state
 
 That gives us :
 
@@ -108,9 +108,9 @@ The most basic configuration is :
 ```
 
 Basically :
-– that adds the transform `babel-plugin-react-transform` for the `development` NODE_ENV only
-– this transform retrieve all the React components it can find in the source code
-– it passes them down to each of its processors defined in `"transforms"` to let them add their custom code. (in our case, `react-transform-hmr` will add the HR code)
+- that adds the transform `babel-plugin-react-transform` for the `development` NODE_ENV only
+- this transform retrieve all the React components it can find in the source code
+- it passes them down to each of its processors defined in `"transforms"` to let them add their custom code. (in our case, `react-transform-hmr` will add the HR code)
 
 For the record, `babel-plugin-react-transform` handles as many `"transforms"` as we want. They are just going to be called right after each other. For instance :
 
@@ -153,8 +153,8 @@ We now have to make the server communicate to the browser that the code has chan
 First, we need to make the server aware that the source code has changed to recompile the bundle, and then notify the browser.
 That's the role of `webpack-dev-middleware` and `webpack-hot-middleware`.
 
-– `webpack-dev-middleware` will automatically start to watch the source code for changes and recompile the bundle
-– `webpack-hot-middleware` will be notified a new bundle is compiled and will notify the browser
+- `webpack-dev-middleware` will automatically start to watch the source code for changes and recompile the bundle
+- `webpack-hot-middleware` will be notified a new bundle is compiled and will notify the browser
 
 We just need to plug them into expressjs as middlewares to start them :
 
@@ -213,26 +213,26 @@ Nothing more to do, we're good to go !
 
 Process :
 
-– compie and start our nodejs server
+- compile and start our nodejs server
 ```shell
 $ npm run compile && npm start
 ```
-– go to our page
+- go to our page
 ```shell
 $ open localhost:3000
 ```
-– go to your code editor and change some javascript bits
+- go to your code editor and change some javascript bits
 ```js
 <ul>You like: {subjects.map(s => <li>{s}</li>)}</ul>;
 // update to
 <ul style={{padding:5}}>You love: {subjects.map(s => <li>{s}</li>)}</ul>;
 ```
-– see the live update !
-– if not, check your console in the browser to see some nice error messages
+- see the live update !
+- if not, check your console in the browser to see some nice error messages
 
 Behind the scene :
-– the server automatically recompile the bundle if some javascript code is updated and notify the browser to update itself via SSE
-– the bundle used in the browser contains some SSE code to intercept those notifications, some generic HR code to "patch" the javascript, and some custom HR code for the React components to not lose their current state
+- the server automatically recompile the bundle if some javascript code is updated and notify the browser to update itself via SSE
+- the bundle used in the browser contains some SSE code to intercept those notifications, some generic HR code to "patch" the javascript, and some custom HR code for the React components to not lose their current state
 
 ## More bits to learn
 
