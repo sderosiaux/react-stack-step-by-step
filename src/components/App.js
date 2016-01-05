@@ -21,7 +21,6 @@ const PRODUCTS = [
 
 export default class App extends React.Component {
   render() {
-    const items = this.props.items;
     return (
       <div style={STYLE_APP}>
         <Toolbar />
