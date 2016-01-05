@@ -155,3 +155,7 @@ set NODE_ENV=production&& .\node_modules\.bin\webpack -p
 ```
 
 Et voilà, 131kB. That's the best we can do for now.
+
+# Cookbook
+
+You can find a tremendous amount of information, how to use it, the various features, here : [http://christianalfoni.github.io/react-webpack-cookbook/](http://christianalfoni.github.io/react-webpack-cookbook/).
