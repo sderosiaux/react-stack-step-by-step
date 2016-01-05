@@ -1,4 +1,4 @@
-# 7. Let's add some code Linting
+# 10. Let's add some code Linting
 
 Code linting is simply a set of rules to apply, to enforce some styles and norms in the code, and even check if you're writting bugs (due to typos mostly).
 
@@ -54,7 +54,7 @@ To avoid to type the eslint command each time, let's add a simple npm script :
 
 ```json
 "scripts": {
-  ...
+  // ...
   "lint": "eslint src"
 ```
 
@@ -244,9 +244,9 @@ If I want to allow trailing commas, I can override the rule :
 
 For `comma-dangle` rule :
 
-- 0 means : you don't care (disabled).
-- 1 means : you get a warning if that happens, it's tolerated (ESLint will still succeed)
-- 2 means : ESLint you are going fail if that happens
+- `0` means : you don't care (disabled).
+- `1` means : you get a warning if that happens, it's tolerated (ESLint will still succeed)
+- `2` means : ESLint you are going fail if that happens
 
 Some rules accept option to change their behavior.
 
@@ -262,14 +262,11 @@ For instance, if I want to *force* trailing commas for multilines, it's possible
 This will generate errors if there is a missing trailing comma on arrays or objects that span multiple lines.
 
 The option has no effect if the code is `0` (disabled).
-
 The available options (if there is) depend on the rule, check [http://eslint.org/docs/rules/comma-dangle](http://eslint.org/docs/rules/comma-dangle) for instance.
 
 Personally, I like those dangle-commas because that means I can switch the lines order without playing with the end-of-lines.
 
-Anyway, as you saw, it's very configurable and anybody can match its code style and force it everywhere in it source code.
-
-But that's not useful only for that, but can help to find bugs before runtime.
+Anyway, as you saw, it's very configurable and anybody can match its code style and force it everywhere in it source code. But that's not useful only for that, but can help to find bugs before runtime.
 
 ## Bug finding
 
@@ -352,12 +349,12 @@ If an error occurs, webpack won't be executed.
 
 Let's quickly go through some classic linting errors :
 
-- `"Toolbar" is defined but never used       no-unused-vars` : if you're using <Toolbar /> it won't find it unless you are using react plugin in ESLint.
-- `"items" is defined but never used         no-unused-vars` : a plain js variable you are not using, remove it
-- `Unexpected var, use let or const instead  no-var` : `var` is evil
-- `Strings must use singlequote              quotes` : prefer `"` over `'`
-- `Unexpected trailing comma                 comma-dangle` : the famous trailing comma at the end of multilines
-- `Extra semicolon                           semi` : if you want or don't want semicolon at the end of statements
+- `"Toolbar" is defined but never used       | no-unused-vars` : if you're using <Toolbar /> it won't find it unless you are using react plugin in ESLint.
+- `"items" is defined but never used         | no-unused-vars` : a plain js variable you are not using, remove it
+- `Unexpected var, use let or const instead  | no-var` : `var` is evil
+- `Strings must use singlequote              | quotes` : prefer `'` over `"`
+- `Unexpected trailing comma                 | comma-dangle` : the famous trailing comma at the end of multilines
+- `Extra semicolon                           | semi` : if you want or don't want semicolon at the end of statements
 
 As you understood, the keyword on the right is the code you want to look for to understand what it means or to override it as you wish.
 
