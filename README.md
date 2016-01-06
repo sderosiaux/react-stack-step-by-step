@@ -1,3 +1,5 @@
+[back to 8-react-structure](https://github.com/chtefi/react-stack-step-by-step/tree/8-react-structure/)
+
 # 9. Let's add some content
 
 Thanks to our previous step, we already have a simple but functional boilerplate, we could add thousands of components, structured, with HR, ES5 compilation for in-browser usage. No problemo. Let's add some content to play a bit, and introduce new tools to respond to our growing needs.
