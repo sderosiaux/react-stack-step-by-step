@@ -1,3 +1,5 @@
+[back to 9-react-content](https://github.com/chtefi/react-stack-step-by-step/tree/9-react-content/)
+
 # 10. Let's add some code Linting
 
 Code linting is simply a set of rules to apply, to enforce some styles and rules into the code, and even check if you're writing bugs (due to typos mostly).
