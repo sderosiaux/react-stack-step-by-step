@@ -112,7 +112,7 @@ Now, it does not understand JSX it seems. Let's make it understand JSX.
 Boom, it passes without error !
 That means it could parse it properly at least.
 
-There is not error, not because the code is already perfect, but because, by default : *All rules are disabled by default*.
+There is no error, not because the code is already perfect, but because, by default : *All rules are disabled by default*.
 
 But there are a tons of rules, let's see how to extends some existing default. We are not the first people to want to use it right ?
 
