@@ -13,6 +13,8 @@ It's still a WIP but those parts are already done, but it's going to go way furt
 - [9-react-content](https://github.com/chtefi/react-stack-step-by-step/tree/9-react-content)
 - [10-react-linting](https://github.com/chtefi/react-stack-step-by-step/tree/10-react-linting)
 
+Some of them will be adapted and published in standalone version on my blog : http://ctheu.com/
+
 # Incoming
 
 - redux
