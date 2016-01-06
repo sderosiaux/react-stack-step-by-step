@@ -28,7 +28,7 @@ $ npm i -D eslint
 ## How to use it
 
 `eslint` gives us the command of the same name in `./node_modules/.bin/eslint`.
-It's just take the folder to lint in parameters such as :
+It just takes the folder to lint in parameter such as :
 
 ```shell
 $ ./node_modules/.bin/eslint src
