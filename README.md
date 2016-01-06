@@ -114,15 +114,15 @@ That means it could parse it properly at least.
 
 There is no error, not because the code is already perfect, but because, by default : *All rules are disabled by default*.
 
-But there are a tons of rules, let's see how to extend some existing defaults. We are not the first person who want to use it right ?
+But there are a ton of rules, let's see how to extend some existing defaults. We are not the first person who want to use it right ?
 
 ## Extends some default ESLint configuration
 
-It's recommanded to extends the [eslint:recommanded](http://eslint.org/docs/rules/) set of rules, to begin with.
+It's recommanded to extend the [eslint:recommanded](http://eslint.org/docs/rules/) set of rules, to begin with.
 
-But we can also extends some other knowns ones, such as :
+But we can also extend some other known ones, such as :
 
-- [eslint-config-airbnb](https://github.com/airbnb/javascript/tree/master/packages/eslint-config-airbnb) : want to work at airbnb ? Learn their style.
+- [eslint-config-airbnb](https://github.com/airbnb/javascript/tree/master/packages/eslint-config-airbnb) : want to work at airbnb ? Learn their styles.
 - [eslint-config-rackt](https://github.com/rackt/eslint-config-rackt) : a nice style overriding some properties of `eslint:recommanded`. I'm not fan because it forbids semicolons, commas on the last array item, all those useless things I like to write.
 
 To extends those rules, `npm i` them or use the `eslint:recommanded` one directly :
@@ -145,8 +145,8 @@ To extends those rules, `npm i` them or use the `eslint:recommanded` one directl
 19:378  error  Unexpected trailing comma                comma-dangle
 ```
 
-Now we are some linting issues.
-But it seems ESLint does not understand yet in this kind of program :
+Now we have some linting issues.
+But it seems ESLint does not understand yet this kind of program :
 
 ```javascript
 import Toolbar from './Toolbar.js';
@@ -156,7 +156,11 @@ import Toolbar from './Toolbar.js';
 
 The variable `Toolbar` is used by `<Toolbar />` (translated to `React.createElement(Toolbar)`), so the `no-unused-vars` error is not a true error.
 
-To make it understand that the imported components are used in JSX, we need to install the plugin [`eslint-plugin-react`](https://github.com/yannickcr/eslint-plugin-react) and add a special rule [jsx-uses-react](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-uses-vars.md) to use it and remove this ESLint false error.
+To make it understand that the imported components are used in JSX, we need to install the plugin [`eslint-plugin-react`](https://github.com/yannickcr/eslint-plugin-react) and add a special rule [jsx-uses-react](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-uses-vars.md) from this plugin, that will remove this ESLint false error.
+
+```shell
+$ npm i -D eslint-plugin-react
+```
 
 ```json
 {
@@ -177,9 +181,6 @@ To make it understand that the imported components are used in JSX, we need to i
 }
 ```
 
-```shell
-$ npm i -D eslint-plugin-react
-```
 
 Tada, we are left with some true linting errors such as :
 
