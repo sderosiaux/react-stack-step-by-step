@@ -1,3 +1,5 @@
+[back to 6-react-npm-scripts](https://github.com/chtefi/react-stack-step-by-step/tree/6-react-npm-scripts/)
+
 # 7. Let's add Hot Reloading
 
 ## Why should I use Hot Reloading ?
