@@ -246,9 +246,9 @@ For `comma-dangle` rule :
 
 - `0` means : you don't care (disabled).
 - `1` means : you get a warning if that happens, it's tolerated (ESLint will still succeed)
-- `2` means : ESLint you are going fail if that happens
+- `2` means : ESLint is going to fail if that happens
 
-Some rules accept option to change their behavior.
+Some rules accept some options to change their behavior.
 
 For instance, if I want to *force* trailing commas for multilines, it's possible :
 
@@ -285,7 +285,7 @@ It's never a good idea to disable the rule [`no-undef`](http://eslint.org/docs/r
 ## More Babel syntax available thanks to [`babel-eslint`](https://github.com/babel/babel-eslint)
 
 ESLint uses [`espree`](http://eslint.org/docs/user-guide/configuring#specifying-parser) to parse ES6.
-But we are using Babel, and Babel handle some features such as the spread notation that are not handled by `espree` :
+But we are using Babel, and Babel handles some features such as the spread notation that are not handled by `espree` :
 
 ```js
 const obj = { a: 1, ...{ b: 2, c: 3 } };
