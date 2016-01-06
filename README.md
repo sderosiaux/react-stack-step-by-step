@@ -2,7 +2,7 @@
 
 Code linting is simply a set of rules to apply, to enforce some styles and norms in the code, and even check if you're writing bugs (due to typos mostly).
 
-By applying the same rules on the whole source code, you are sure that everywhere there is no missing semicolons (for that there is if you don't like them), that the variables are properly named, that the order of methods to override is fixed, that the constructor is the first method, that the depth of the functions is not more than 4 etc. etc.
+By applying the same rules on the whole source code, you can, for instance, make sure that everywhere there is no missing semicolons (or that there is not semicolons at all if you don't like them), that the variables are properly named, that the order of methods to override is fixed, that the constructor is the first method, that the depth of the functions is not more than 4 etc. etc.
 
 There are a LOT of rules to control.
 
