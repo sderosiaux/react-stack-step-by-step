@@ -28,7 +28,7 @@ $ npm i -D eslint
 ## How to use it
 
 `eslint` gives us the command of the same name in `./node_modules/.bin/eslint`.
-It just takes the folder to lint in parameter such as :
+It just takes in parameter a folder or a file on which we want to apply some linting such as :
 
 ```shell
 $ ./node_modules/.bin/eslint src
@@ -376,7 +376,7 @@ You can add special comment in your code to talk to ESLint :
 
 ## Your text editor / IDE supports linting on-the-fly
 
-Last but not least, every good text-editors or IDEs have a plugin to automatically lint your code when typing, and display a marker next to the line if something is wrong : because you don't want to check back your console and re-execute the full linting each time you write some lines.
+Last but not least, every good text-editors or IDEs have a plugin to automatically apply linting to your code when typing, and display a marker next to the line if something is wrong : because you don't want to check back your console and re-execute the full linting each time you write some lines.
 
 Check your IDE doc for more info.
 
