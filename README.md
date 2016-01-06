@@ -38,3 +38,7 @@ What if you're not alone ? What if you have thousands of lines ?
 - Code should be checked to detect incertitudes, typos, side-effects, dangerous syntax etc.
 
 This is our next step : code linting.
+
+## Next step
+
+[10-react-linting](https://github.com/chtefi/react-stack-step-by-step/tree/10-react-linting)
