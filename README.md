@@ -12,3 +12,28 @@ It's still a WIP but those parts are already done, but it's going to go way furt
 - [8-react-structure](https://github.com/chtefi/react-stack-step-by-step/tree/8-react-structure)
 - [9-react-content](https://github.com/chtefi/react-stack-step-by-step/tree/9-react-content)
 - [10-react-linting](https://github.com/chtefi/react-stack-step-by-step/tree/10-react-linting)
+
+# Incoming
+
+- redux
+- devTools
+- propTypes
+- css modules
+- source mapping
+- router
+- tests
+- universal
+- cross-browsers
+- scripts cross-environments
+- ...
+
+Optional :
+- immutability
+- graphQL
+- flow
+- greenkeeper
+- gulp
+- offline
+- docker
+- jscs
+- ...
