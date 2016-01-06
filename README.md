@@ -57,7 +57,7 @@ To avoid to type the eslint command each time, let's add a simple npm script :
   "lint": "eslint src"
 ```
 
-Remember: when `npm` executes the scripts, it has access to the `./node_modules/.bin` folder automatically `eslint` refers to. No need to add this path in the script.
+Remember: when `npm` executes the scripts, it has access to the `./node_modules/.bin` folder automatically `eslint` refers to. No need to add the path in the script.
 
 Now, let's fix our ESLint.
 
