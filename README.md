@@ -46,7 +46,7 @@ src\components\Product.js
 
 It's because by default, ESLint does not understand ES6.
 
-Before fixing that, let's simplify our life, and create a npm script command.
+Before fixing that, let's simplify our life, and create a npm script command to run this command quickly.
 
 ## Add a npm script
 
