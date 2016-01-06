@@ -1,3 +1,5 @@
+[back to 7-react-hot-reloading](https://github.com/chtefi/react-stack-step-by-step/tree/7-react-hot-reloading/)
+
 # 8. Let's add some structure
 
 ## Why should I add some structure in my project ?
