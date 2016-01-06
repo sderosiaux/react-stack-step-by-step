@@ -1,3 +1,5 @@
+[back to 5-react-webpack](https://github.com/chtefi/react-stack-step-by-step/tree/5-react-webpack/)
+
 # 6. Let's add some NPM scripts
 
 ## Why should I use NPM scripts ?
