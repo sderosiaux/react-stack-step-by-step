@@ -54,7 +54,6 @@ To avoid to type the eslint command each time, let's add a simple npm script :
 
 ```json
 "scripts": {
-  // ...
   "lint": "eslint src"
 ```
 
