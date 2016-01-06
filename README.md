@@ -58,3 +58,7 @@ To (!) :
 ```js
 const App = ({ subjects }) => <ul>You like {subjects.map(s => <li>{s}</li>)}</ul>;
 ```
+
+## Next step
+
+[5-react-webpack](https://github.com/chtefi/react-stack-step-by-step/tree/5-react-webpack)
