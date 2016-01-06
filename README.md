@@ -1,3 +1,5 @@
+[back to 3-react-jsx](https://github.com/chtefi/react-stack-step-by-step/tree/3-react-jsx/)
+
 # 4. Let's add Javascript ES6
 
 ## Why should I use ES6 syntax ?
