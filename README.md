@@ -7,7 +7,7 @@ By applying the same rules on the whole source code, you can, for instance, make
 There are a LOT of rules to control.
 
 Hopefully, we can use some presets created by big tech companies to avoid to set them all manually.
-Moreover, if they follow those styles, it's a good opportunity to follow the same one.!
+Moreover, if they follow those styles, it's a good opportunity to follow the same ones.!
 
 ## What packages to install to do linting ?
 
