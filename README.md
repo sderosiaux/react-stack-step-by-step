@@ -114,3 +114,7 @@ available via `npm run-script`:
   compile
     webpack
 ```
+
+## Next step
+
+[7-react-hot-reloading](https://github.com/chtefi/react-stack-step-by-step/tree/7-react-hot-reloading)
