@@ -32,3 +32,7 @@ var app = express();
 app.use(express.static('src'));
 app.listen(3000);
 ```
+
+## Next step
+
+[3-react-jsx](https://github.com/chtefi/react-stack-step-by-step/tree/3-react-jsx)
