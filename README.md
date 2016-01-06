@@ -39,4 +39,6 @@ var mountNode = document.getElementById("app");
 ReactDOM.render(React.createElement(App, { subjects: [ "Javascript", "Java" ] }), mountNode);
 ```
 
+## Next step
 
+[2-react-express](https://github.com/chtefi/react-stack-step-by-step/tree/2-react-express)
