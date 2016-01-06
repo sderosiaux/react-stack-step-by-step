@@ -321,3 +321,7 @@ Unfortunately, there are still some caveats with the way we do it :
 - @dan_abramov is working on [something different](https://twitter.com/dan_abramov/status/681813386095636480) to handle HR at the function level directly, to make it more generic
 
 Being quite generic, those explanations were posted on my blog too : [http://ctheu.com/2015/12/29/webpack-hot-reloading-and-react-how/](http://ctheu.com/2015/12/29/webpack-hot-reloading-and-react-how/).
+
+## Next step
+
+[8-react-structure](https://github.com/chtefi/react-stack-step-by-step/tree/8-react-structure)
