@@ -393,6 +393,9 @@ In my case, I'm using the best text editor aka Sublime Text, you need to install
 - [SublimeLinter](http://www.sublimelinter.com/)
 - [SublimeLinter-contrib-eslint](https://github.com/roadhump/SublimeLinter-eslint)
 
+This is what you get :
+![sublimelinter](https://cdn.rawgit.com/chtefi/react-boilerplates/10-react-linting/sublimelint.png)
+
 ## Next step
 
 Incoming. Stay tuned..!
