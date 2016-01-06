@@ -4,7 +4,7 @@ It's still a WIP but those parts are already done, but it's going to go way furt
 
 It starts totally from scratch and little by little, add more packages and configuration (explained in details).
 
-- [1-react-no-npm-no-jsx](https://github.com/chtefi/react-stack-step-by-step/tree/1-react-no-npm-no-jsx)
+- Start here : [1-react-no-npm-no-jsx](https://github.com/chtefi/react-stack-step-by-step/tree/1-react-no-npm-no-jsx)
 - [2-react-express](https://github.com/chtefi/react-stack-step-by-step/tree/2-react-express)
 - [3-react-jsx](https://github.com/chtefi/react-stack-step-by-step/tree/3-react-jsx)
 - [4-react-es6](https://github.com/chtefi/react-stack-step-by-step/tree/4-react-es6)
