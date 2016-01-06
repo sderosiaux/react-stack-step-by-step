@@ -394,7 +394,7 @@ In my case, I'm using the best text editor aka Sublime Text, you need to install
 - [SublimeLinter-contrib-eslint](https://github.com/roadhump/SublimeLinter-eslint)
 
 This is what you get :
-![sublimelinter](https://cdn.rawgit.com/chtefi/react-stack-step-by-step/10-react-linting/sublimelint.png)
+![sublimelinter](https://cdn.rawgit.com/chtefi/react-stack-step-by-step/10-react-linting/sublimelinter.png)
 
 ## Next step
 
