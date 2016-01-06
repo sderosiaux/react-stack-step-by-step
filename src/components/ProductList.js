@@ -11,14 +11,14 @@ const STYLE_LI = {
   listStyleType: 'none',
   margin: 10,
   flex: 1
-}
+};
 
 export default class extends React.Component {
   render() {
-    var { products } = this.props;
+    const { products } = this.props;
     return (
       <ul style={STYLE_UL}>
-        {producs.map(p => <li style={STYLE_LI}><Product {...p} /></li>)}
+        {products.map(p => <li style={STYLE_LI}><Product {...p} /></li>)}
       </ul>
     )
   }
