@@ -114,7 +114,7 @@ That means it could parse it properly at least.
 
 There is no error, not because the code is already perfect, but because, by default : *All rules are disabled by default*.
 
-But there are a tons of rules, let's see how to extends some existing default. We are not the first people to want to use it right ?
+But there are a tons of rules, let's see how to extend some existing defaults. We are not the first person who want to use it right ?
 
 ## Extends some default ESLint configuration
 
