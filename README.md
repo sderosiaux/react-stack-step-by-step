@@ -101,3 +101,7 @@ Instead of copy/paste the url, we reuse the `publicPath` declared in the config.
 Henceforth, `webpack-dev-middleware` will serve `/static/*` as a synonym for `dist/`.
 
 Note that it won't be possible to access `/bundle.js` anymore.
+
+## Next step
+
+[9-react-content](https://github.com/chtefi/react-stack-step-by-step/tree/9-react-content)
