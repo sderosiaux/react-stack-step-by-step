@@ -13,6 +13,9 @@ Because the ES5 syntax is :
 
 Learn ES6 and convert our main source `App.js` to Javascript ES6 using classes, arrow functions, a better variable scoping, destructuring and so on).
 
+The conversion will be done automatically in-browser thanks to `babel` through `browser.js` we just included in the previous step.
+In the next step, we will remove this and use `webpack` and the `babel` npm package to do the same (but with more controls).
+
 ## Convert from ES5 to ES6
 
 It can really reduce a lot your keystrokes.
