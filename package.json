@@ -15,7 +15,9 @@
   "dependencies": {
     "express": "^4.13.3",
     "react": "^0.14.3",
-    "react-dom": "^0.14.3"
+    "react-dom": "^0.14.3",
+    "redux": "^3.0.5",
+    "redux-thunk": "^1.0.3"
   },
   "devDependencies": {
     "babel-core": "^6.3.26",
