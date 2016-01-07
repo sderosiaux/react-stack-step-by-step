@@ -284,6 +284,8 @@ Typo !
 
 It's never a good idea to disable the rule [`no-undef`](http://eslint.org/docs/rules/no-undef.html), you can understand why.
 
+Even Babel has a plugin to find those typos and fail the build if there are some : http://babeljs.io/docs/plugins/undeclared-variables-check
+
 ## More Babel syntax available thanks to [`babel-eslint`](https://github.com/babel/babel-eslint)
 
 ESLint uses [`espree`](http://eslint.org/docs/user-guide/configuring#specifying-parser) to parse ES6.
