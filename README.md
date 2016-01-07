@@ -12,7 +12,7 @@ But even in this case, I was often wondering myself : but why this config ? why 
 Often, you don't want this particular feature/package the boilerplate is including.
 
 This is why I've created this repository.
-A few days later, Pete Hunt even created something a bit similar : a recap of all the tools and packages a React developer should learn because the current system is overwhelming : https://github.com/petehunt/react-howto. We are just doing the same, technically in-depth.
+A few days later, Pete Hunt even created something a bit similar : a recap of all the tools and packages a React developer should know or learn because the current ecosystem is overwhelming : https://github.com/petehunt/react-howto. We are just doing the same, technically in-depth.
 
 I'm going to create a full-feature React project/boilerplate running all those projects that are "necessary" nowadays to make something awesome. But I will explain step-by-step how-to.
 
