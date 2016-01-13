@@ -31,14 +31,23 @@ Here is a simple React program using old Javascript ES5 syntax :
 var App = React.createClass({
   render: function() {
     var items = this.props.subjects.map(function(subject) {
-      return React.createElement("li", null, subject);
+      return React.DOM.li(null, subject);
+      // same as React.createElement("li", null, subject);
     });
-    return React.createElement("ul", null, "You like ", items);
+    return React.DOM.ul(null, "You like ", items);
+    // or React.createElement("ul", null, subject);
   }
 });
 
 var mountNode = document.getElementById("app");
 ReactDOM.render(React.createElement(App, { subjects: [ "Javascript", "Java" ] }), mountNode);
+/*
+<ul>
+  You like <!-- here just for the example! -->
+  <li>Javascript</li>
+  <li>Java</li>
+</ul>
+*/
 ```
 
 ## Next step
