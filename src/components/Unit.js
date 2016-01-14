@@ -16,26 +16,20 @@ const STYLE_NAME = {
 
 const STYLE_IMAGE = (imagePath) => ({
   width: 300,
-  height: 200,
+  height: 220,
   backgroundImage: `url(${imagePath}?${Math.random()})`,
   backgroundSize: 'cover',
-  borderRadius: 30,
+  borderRadius: 10,
   boxShadow: '3px 3px 5px rgba(0,0,0,.2)'
 });
 
-const STYLE_DESC = {
-  textAlign: 'justify',
-  padding: 10
-};
-
 export default class extends React.Component {
   render() {
-    const { name, imagePath, description } = this.props;
+    const { name, imagePath } = this.props;
     return (
       <div style={STYLE_CONTAINER}>
         <header style={STYLE_NAME}>{name}</header>
         <div style={STYLE_IMAGE(imagePath)}></div>
-        <div style={STYLE_DESC}>{description}</div>
       </div>
     );
   }

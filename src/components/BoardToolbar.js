@@ -2,7 +2,7 @@ import React from 'react';
 
 const STYLE_HEADER = {
   fontSize: 30,
-  textAlign: 'center',
+  textAlign: 'left',
   padding: 10,
   textTransform: 'uppercase',
   borderBottom: '1px solid rgba(0,0,0,.1)'
@@ -10,6 +10,7 @@ const STYLE_HEADER = {
 
 export default class extends React.Component {
   render() {
-    return <header style={STYLE_HEADER}>— PixaPixa —</header>;
+    const { name } = this.props;
+    return <header style={STYLE_HEADER}>Board : {name}</header>;
   }
 }
