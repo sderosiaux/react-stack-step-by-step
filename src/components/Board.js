@@ -1,4 +1,6 @@
 import React from 'react';
+import { connect } from 'react-redux'
+
 import BoardToolbar from './BoardToolbar.js';
 import Unit from './Unit.js';
 
@@ -19,16 +21,17 @@ const STYLE_UNIT = {
   listStyleType: 'none'
 };
 
-export default class extends React.Component {
+export default connect(state => ({ units: state }))(class extends React.Component {
   render() {
-    const { name, units } = this.props;
+    const { units, dispatch } = this.props;
+
     return (
       <div style={STYLE_BOARD}>
-        <BoardToolbar name={name} />
+        <BoardToolbar name={units.length} dispatch={dispatch} />
         <ul style={STYLE_LIST}>
-          {units.map(p => <li style={STYLE_UNIT}><Unit {...p} /></li>)}
+          {units.map(p => <li key={p.name} style={STYLE_UNIT}><Unit {...p} /></li>)}
         </ul>
       </div>
     );
   }
-}
+});
