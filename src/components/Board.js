@@ -14,14 +14,20 @@ const STYLE_LIST = {
   justifyContent: 'space-around',
   flexWrap: 'wrap',
   margin: 0,
-  padding: 10,
+  padding: 0,
 };
 
 const STYLE_UNIT = {
-  listStyleType: 'none'
+  listStyleType: 'none',
+  margin: 10
 };
 
-export default connect(state => ({ units: state }))(class extends React.Component {
+export default connect(state => ({ units: state }))(class Board extends React.Component {
+  static propTypes = {
+    units: React.PropTypes.array.isRequired,
+    dispatch: React.PropTypes.func.isRequired
+  };
+
   render() {
     const { units, dispatch } = this.props;
 

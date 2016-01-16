@@ -19,12 +19,17 @@ const STYLE_BUTTON = {
   textTransform: 'uppercase',
 };
 
-export default class extends React.Component {
+export default class BoardToolbar extends React.Component {
+  static propTypes = {
+    name: React.PropTypes.string.isRequired,
+    dispatch: React.PropTypes.func.isRequired
+  };
+
   onAddButtonClick() {
     this.props.dispatch({ type: 'ADD' })
   }
 
-  onReorderButtonClick() {
+  onSortButtonClick() {
     this.props.dispatch({ type: 'SORT' })
   }
 
@@ -34,9 +39,10 @@ export default class extends React.Component {
     return (
       <header style={STYLE_HEADER}>
         Board : {name}
-        <button style={STYLE_BUTTON} onClick={this.onReorderButtonClick.bind(this)}>Sort</button>
-        <button style={STYLE_BUTTON} onClick={this.onAddButtonClick.bind(this)}>Add</button>
+        <button style={STYLE_BUTTON} onClick={() => this.onSortButtonClick()}>Sort</button>
+        <button style={STYLE_BUTTON} onClick={() => this.onAddButtonClick()}>Add</button>
       </header>
     );
   }
 }
+

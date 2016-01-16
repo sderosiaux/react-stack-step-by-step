@@ -14,22 +14,31 @@ const STYLE_NAME = {
   fontWeight: 'bold', fontSize: 20
 };
 
-const STYLE_IMAGE = (imagePath) => ({
+const STYLE_IMAGE = (imagePath, cacheBuster) => ({
   width: 300,
   height: 220,
-  backgroundImage: `url(${imagePath}?${Math.random()})`,
+  backgroundImage: `url(${imagePath}?${cacheBuster})`,
   backgroundSize: 'cover',
   borderRadius: 10,
   boxShadow: '3px 3px 5px rgba(0,0,0,.2)'
 });
 
-export default class extends React.Component {
+export default class Unit extends React.Component {
+  constructor() {
+    super();
+    this.cacheBuster = Math.random();
+  }
+  static propTypes = {
+    name: React.PropTypes.string.isRequired,
+    imagePath: React.PropTypes.string.isRequired
+  };
+
   render() {
     const { name, imagePath } = this.props;
     return (
       <div style={STYLE_CONTAINER}>
         <header style={STYLE_NAME}>{name}</header>
-        <div style={STYLE_IMAGE(imagePath)}></div>
+        <div style={STYLE_IMAGE(imagePath, this.cacheBuster)}></div>
       </div>
     );
   }

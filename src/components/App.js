@@ -25,14 +25,9 @@ const boardState = (state = UNITS, action) =>
 
 const store = createStore(boardState)
 
-export default class App extends React.Component {
-  render() {
-    return (
-      <div style={STYLE_APP}>
-        <Provider store={store}>
-          <Board />
-        </Provider>
-      </div>
-    );
-  }
-}
+export default () =>
+  <div style={STYLE_APP}>
+    <Provider store={store}>
+      <Board />
+    </Provider>
+  </div>;
