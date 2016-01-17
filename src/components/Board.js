@@ -2,42 +2,41 @@ import React from 'react';
 import { connect } from 'react-redux'
 
 import BoardToolbar from './BoardToolbar.js';
-import Unit from './Unit.js';
+import Card from './Card.js';
 
-const STYLE_BOARD = {
-  background: 'white',
-  width: '100%'
-};
+//
+// Pure component
+//
 
-const STYLE_LIST = {
-  display: 'flex',
-  justifyContent: 'space-around',
-  flexWrap: 'wrap',
-  margin: 0,
-  padding: 0,
-};
+const STYLE_BOARD = { background: 'white', width: '100%' };
+const STYLE_LIST = { display: 'flex', justifyContent: 'space-around', flexWrap: 'wrap', margin: 0, padding: 0 };
+const STYLE_UNIT = { listStyleType: 'none', margin: 10 };
 
-const STYLE_UNIT = {
-  listStyleType: 'none',
-  margin: 10
-};
+// helper fn
+const createUnit = props => <li key={props.id} style={STYLE_UNIT}><Card {...props} /></li>
 
-export default connect(state => ({ units: state }))(class Board extends React.Component {
+export class Board extends React.Component {
   static propTypes = {
-    units: React.PropTypes.array.isRequired,
-    dispatch: React.PropTypes.func.isRequired
+    cards: React.PropTypes.array.isRequired
   };
 
   render() {
-    const { units, dispatch } = this.props;
+    const { cards } = this.props;
 
     return (
       <div style={STYLE_BOARD}>
-        <BoardToolbar name={units.length} dispatch={dispatch} />
+        <BoardToolbar />
         <ul style={STYLE_LIST}>
-          {units.map(p => <li key={p.name} style={STYLE_UNIT}><Unit {...p} /></li>)}
+          {cards.map(createUnit)}
         </ul>
       </div>
     );
   }
-});
+}
+
+//
+// Connected component
+// 
+
+const mapStateToProps = (state) => ({ cards: state });
+export default connect(mapStateToProps)(Board);

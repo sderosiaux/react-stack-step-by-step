@@ -1,30 +1,22 @@
 import React from 'react';
 
-import { createStore } from 'redux'
+import { createStore, applyMiddleware } from 'redux'
 import { Provider } from 'react-redux'
+
+import logState from '../middlewares/logState.js';
+import logAction from '../middlewares/logAction.js';
+import boardStateReducer from '../reducers/boardState.js';
 
 import Board from './Board.js';
 
-const STYLE_APP = {
-  color: 'black',
-  fontFamily: 'Roboto',
-  padding: 100
-};
+const STYLE_APP = { color: 'black', fontFamily: 'Roboto', padding: 100 };
 
-const UNITS = [
-  { name: 'A', imagePath: 'http://lorempixel.com/400/200/' },
-  { name: 'B', imagePath: 'http://lorempixel.com/400/200/' },
-  { name: 'C', imagePath: 'http://lorempixel.com/400/200/' },
-  { name: 'D', imagePath: 'http://lorempixel.com/400/200/' }
-];
+const storeEnhancer = applyMiddleware(logState, logAction);
+const createEnhancedStore = storeEnhancer(createStore);
+const store = createEnhancedStore(boardStateReducer);
 
-const boardState = (state = UNITS, action) =>
-    action.type === 'ADD' ? state.concat({ name: Math.random().toString(), imagePath: 'http://lorempixel.com/400/200/' }) :
-    action.type === 'SORT' ? state.slice().sort(() => Math.random() - 0.5) :
-    state;
-
-const store = createStore(boardState)
-
+// The store will injected into the React context.
+// To get it back, components must be wrapped with : connect()(Component)
 export default () =>
   <div style={STYLE_APP}>
     <Provider store={store}>
