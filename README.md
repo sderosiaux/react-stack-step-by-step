@@ -1,4 +1,4 @@
-[back to 7-react-hot-reloading](https://github.com/chtefi/react-stack-step-by-step/tree/7-react-hot-reloading/)
+"[back to 7-react-hot-reloading](https://github.com/chtefi/react-stack-step-by-step/tree/7-react-hot-reloading/)
 
 # 8. Let's add some structure
 
@@ -52,9 +52,18 @@ const items = [ "Javascript", "Java" ];
 ReactDOM.render(<App items={items} />, mountNode);
 ```
 
-All React components should be put in their own folder `components/`, to know that they aree all components.
+All React components should be put in their own folder `components/`, to know that they are all components.
 
-> Even if you don't see `React` usage in this source, you _must_ import it, otherwise you'll end up with a error in the browser `React is not defined`. This is because the JSX will be converted to ES6 and therefore make use of `React.createElement`.
+Aside note, when writing :
+
+```javascript
+import App from './components/App.js';
+```
+
+Don't forget that in `App.js`, you should use `export default class App ...` and not simply `export class App`.
+If you use the latter writing, you'll need to import it this way : `import { App } from './components/App.js'`. 
+
+Moreover, even if you don't see `React` usage in this source, you _must_ import it, otherwise you'll end up with a error in the browser `React is not defined`. This is because the JSX will be converted to ES6 and therefore make use of `React.createElement`.
 
 ## How index.js can still find bundle.js ?
 
