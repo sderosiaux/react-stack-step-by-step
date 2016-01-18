@@ -5,7 +5,7 @@ import { Provider } from 'react-redux'
 
 import logState from '../middlewares/logState.js';
 import logAction from '../middlewares/logAction.js';
-import boardStateReducer from '../reducers/boardState.js';
+import combinedReducer from '../reducers';
 
 import Board from './Board.js';
 
@@ -13,7 +13,7 @@ const STYLE_APP = { color: 'black', fontFamily: 'Roboto', padding: 100 };
 
 const storeEnhancer = applyMiddleware(logState, logAction);
 const createEnhancedStore = storeEnhancer(createStore);
-const store = createEnhancedStore(boardStateReducer);
+const store = createEnhancedStore(combinedReducer);
 
 // The store will injected into the React context.
 // To get it back, components must be wrapped with : connect()(Component)

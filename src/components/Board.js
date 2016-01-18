@@ -38,5 +38,5 @@ export class Board extends React.Component {
 // Connected component
 // 
 
-const mapStateToProps = (state) => ({ cards: state });
+const mapStateToProps = (state) => ({ cards: state.cards });
 export default connect(mapStateToProps)(Board);
