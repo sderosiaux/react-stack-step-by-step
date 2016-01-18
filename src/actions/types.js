@@ -1,7 +1,8 @@
 const ADD = 'ADD';
-const SORT = 'SORT';
+const CLEAR = 'CLEAR';
 const CARD_CLICK = 'CARD_CLICK';
 const RENAMING = 'RENAMING';
 const RENAMED = 'RENAMED';
+const RESET = 'RESET';
 
-export { ADD, SORT, CARD_CLICK, RENAMING, RENAMED };
+export { ADD, CLEAR, CARD_CLICK, RENAMING, RENAMED, RESET };

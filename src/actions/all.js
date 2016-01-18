@@ -1,18 +1,20 @@
-import { ADD, SORT, CARD_CLICK, RENAMING, RENAMED } from './types.js';
+import { ADD, CLEAR, CARD_CLICK, RENAMING, RENAMED, RESET } from './types.js';
 
 let lastId = 0;
 
 const getAddAction = () => ({ type: ADD, count: 0, id: lastId++ });
-const getSortAction = () => ({ type: SORT });
-const getCardClick = (id) => ({ type: CARD_CLICK, id });
+const getClearAction = () => ({ type: CLEAR });
+const getResetAction = () => ({ type: RESET });
+const getCardClickAction = (id) => ({ type: CARD_CLICK, id });
 
 const getRenamingAction = () => ({ type: RENAMING });
 const getRenamedAction = (newName) => ({ type: RENAMED, newName });
 
 export {
   getAddAction,
-  getSortAction,
-  getCardClick,
+  getClearAction,
+  getCardClickAction,
+  getResetAction,
 
   getRenamingAction,
   getRenamedAction

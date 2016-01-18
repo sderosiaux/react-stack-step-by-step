@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { getAddAction, getSortAction, getRenamingAction, getRenamedAction } from '../actions/all.js';
+import { getAddAction, getClearAction, getResetAction, getRenamingAction, getRenamedAction } from '../actions/all.js';
 
 //
 // Pure component
@@ -19,19 +19,23 @@ export class BoardToolbar extends React.Component {
   static propTypes = {
     name: React.PropTypes.string.isRequired,
     count: React.PropTypes.number.isRequired,
-    onSortButtonClick: React.PropTypes.func.isRequired,
+    onClearButtonClick: React.PropTypes.func.isRequired,
     onAddButtonClick: React.PropTypes.func.isRequired,
+    onResetButtonClick: React.PropTypes.func.isRequired,
     isRenaming: React.PropTypes.bool.isRequired,
     onRenaming: React.PropTypes.func.isRequired,
     onRenamed: React.PropTypes.func.isRequired
   };
 
   handleChange(event) {
+    // in this example, for, we're not using redux, no one needs to know the value the user
+    // is typing. we are just going to dispatch the end value.
+    // But we could use totally use Redux to dispatch a renaming action
     this.setState({ renamingName: event.target.value });
   }
 
   render() {
-    const { name, count, onSortButtonClick, onAddButtonClick, isRenaming, onRenaming, onRenamed } = this.props;
+    const { name, count, onClearButtonClick, onAddButtonClick, onResetButtonClick, isRenaming, onRenaming, onRenamed } = this.props;
     const { renamingName } = this.state;
 
     return (
@@ -39,8 +43,10 @@ export class BoardToolbar extends React.Component {
         { isRenaming
           ? <input onBlur={() => onRenamed(renamingName)} autoFocus={true} onChange={this.handleChange.bind(this)} value={renamingName} />
           : <span onClick={onRenaming}>{name} ({count})</span> }
-        <button style={STYLE_BUTTON} onClick={onSortButtonClick}>Sort</button>
-        <button style={STYLE_BUTTON} onClick={onAddButtonClick}>Add</button>
+        
+        <button style={STYLE_BUTTON} onClick={onResetButtonClick}>Reset</button>
+        <button style={STYLE_BUTTON} onClick={onClearButtonClick}>Clear +</button>
+        <button style={STYLE_BUTTON} onClick={onAddButtonClick}>Add card</button>
       </header>
     );
   }
@@ -57,8 +63,9 @@ const mapReduxStateToProps = (state) => ({
   isRenaming: state.board.isRenaming
 });
 const dispatchToProps = (dispatch) => ({
-  onSortButtonClick: () => dispatch(getSortAction()),
+  onClearButtonClick: () => dispatch(getClearAction()),
   onAddButtonClick: () => dispatch(getAddAction()),
+  onResetButtonClick: () => dispatch(getResetAction()),
   onRenaming: () => dispatch(getRenamingAction()),
   onRenamed: (newName) => dispatch(getRenamedAction(newName)),
 });
