@@ -58,10 +58,15 @@ Aside note, when writing :
 
 ```javascript
 import App from './components/App.js';
+// in App.js : export default class App
 ```
 
 Don't forget that in `App.js`, you should use `export default class App ...` and not simply `export class App`.
-If you use the latter writing, you'll need to import it this way : `import { App } from './components/App.js'`. 
+If you use the latter writing, you'll need to import it this way :
+```javascript
+import { App } from './components/App.js'
+// in App.js : export class App
+``` 
 
 Moreover, even if you don't see `React` usage in this source, you _must_ import it, otherwise you'll end up with a error in the browser `React is not defined`. This is because the JSX will be converted to ES6 and therefore make use of `React.createElement`.
 
