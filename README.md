@@ -61,7 +61,29 @@ To avoid to type the eslint command each time, let's add a simple npm script :
 
 Remember: when `npm` executes the scripts, it has access to the `./node_modules/.bin` folder automatically `eslint` refers to. No need to add the path in the script.
 
-Now, let's fix our ESLint.
+## Or add a loader to webpack
+
+It's possible to add a loader into webpack too, that will always be executed when the bundle is created. At least, you don't have to execute the linting task manually.
+
+To do that, you can install [`eslint-loader`](https://github.com/MoOx/eslint-loader) :
+
+```
+$ npm install --save-dev eslint-loader
+```
+
+And add the loader to your configuration. For instance :
+
+```js
+loaders: [{
+  test: /\.js$/,
+  loaders: [ 'babel', 'eslint-loader' ],
+  include: path.join(__dirname, 'src'),
+}]
+```
+
+Each time webpack will compile the bundle, you will see the warnings or errors in the console.
+
+Now that we know how to run our ESLint, let's fix our ESLint configuration.
 
 ## ESLint + ES6 + JSX
 
