@@ -1,4 +1,4 @@
-import { ADD, RESET, CLEAR, SORT, CARD_CLICK } from '../actions/types.js';
+import { ADD, RESET, CLEAR, SORT, VOTE } from '../actions/types.js';
 
 const RANDOM_IMAGE_PATH = 'http://lorempixel.com/400/200/';
 const CARD_INITIAL_STATE = { count: 0, isMax: false, opacity: 0.0, imagePath: RANDOM_IMAGE_PATH,  };
@@ -17,11 +17,14 @@ const updateCardCountById = (id) => mapOnlyFiltered((item) => item.id === id, (i
 
 const resetCardCount = (card) => ({ ...card, ...CARD_INITIAL_STATE })
 
+// no cards by default
+const DEFAULT_CARDS_STATE = [];
 
-export default (state = [], action) =>
+export default (state = DEFAULT_CARDS_STATE, action) =>
+    // this reducer is about cards only
     action.type === ADD ? state.concat({ ...CARD_INITIAL_STATE, name: action.name, id: action.id }) :
     action.type === CLEAR ? [] :
     action.type === SORT ? state.slice().sort((a, b) => b.count - a.count) :
     action.type === RESET ? state.map(resetCardCount) :
-    action.type === CARD_CLICK ? updateCardCountById(action.id)(state) :
+    action.type === VOTE ? updateCardCountById(action.id)(state) :
     state;

@@ -19,9 +19,10 @@ export class BoardToolbar extends React.Component {
   static propTypes = {
     name: React.PropTypes.string.isRequired,
     count: React.PropTypes.number.isRequired,
+    canSort: React.PropTypes.bool.isRequired,
     onClearButtonClick: React.PropTypes.func.isRequired,
     onAddButtonClick: React.PropTypes.func.isRequired,
-    onResetButtonClick: React.PropTypes.func.isRequired,
+    onResetButtonClick: React.PropTypes.func.isRequired,    
     isRenaming: React.PropTypes.bool.isRequired,
     onRenaming: React.PropTypes.func.isRequired,
     onRenamed: React.PropTypes.func.isRequired
@@ -35,18 +36,18 @@ export class BoardToolbar extends React.Component {
   }
 
   render() {
-    const { name, count, onClearButtonClick, onAddButtonClick, onSortButtonClick, onResetButtonClick, isRenaming, onRenaming, onRenamed } = this.props;
+    const { name, count, canSort, onClearButtonClick, onAddButtonClick, onSortButtonClick, onResetButtonClick, isRenaming, onRenaming, onRenamed } = this.props;
     const { renamingName } = this.state;
 
     return (
       <header style={STYLE_HEADER}>
-        { isRenaming
+        { isRenaming /* the <input> should be externalized into a proper React component */
           ? <input onBlur={() => onRenamed(renamingName)} autoFocus={true} onChange={this.handleChange.bind(this)} value={renamingName} />
           : <span style={{cursor: 'pointer'}} onClick={onRenaming}>{name} ({count})</span> }
         
         <button style={STYLE_BUTTON} onClick={onResetButtonClick}>Reset</button>
         <button style={STYLE_BUTTON} onClick={onClearButtonClick}>Clear +</button>
-        <button style={STYLE_BUTTON} onClick={onSortButtonClick}>Sort</button>
+        <button style={STYLE_BUTTON} disabled={!canSort} onClick={onSortButtonClick}>Sort</button>
         <button style={STYLE_BUTTON} onClick={onAddButtonClick}>Add card</button>
       </header>
     );
@@ -60,8 +61,9 @@ export class BoardToolbar extends React.Component {
 // Wrap the component into connect()
 const mapReduxStateToProps = (state) => ({
   name: state.board.name,
-  count: state.cards.length.toString(),
-  isRenaming: state.board.isRenaming
+  count: state.cards.length,
+  isRenaming: state.board.isRenaming,
+  canSort: state.board.hasChanged
 });
 const dispatchToProps = (dispatch) => ({
   onClearButtonClick: () => dispatch(getClearAction()),
