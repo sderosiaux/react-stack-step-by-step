@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { getAddAction, getClearAction, getResetAction, getRenamingAction, getRenamedAction } from '../actions/all.js';
+import { getAddAction, getClearAction, getResetAction, getSortAction, getRenamingAction, getRenamedAction } from '../actions/all.js';
 
 //
 // Pure component
@@ -35,17 +35,18 @@ export class BoardToolbar extends React.Component {
   }
 
   render() {
-    const { name, count, onClearButtonClick, onAddButtonClick, onResetButtonClick, isRenaming, onRenaming, onRenamed } = this.props;
+    const { name, count, onClearButtonClick, onAddButtonClick, onSortButtonClick, onResetButtonClick, isRenaming, onRenaming, onRenamed } = this.props;
     const { renamingName } = this.state;
 
     return (
       <header style={STYLE_HEADER}>
         { isRenaming
           ? <input onBlur={() => onRenamed(renamingName)} autoFocus={true} onChange={this.handleChange.bind(this)} value={renamingName} />
-          : <span onClick={onRenaming}>{name} ({count})</span> }
+          : <span style={{cursor: 'pointer'}} onClick={onRenaming}>{name} ({count})</span> }
         
         <button style={STYLE_BUTTON} onClick={onResetButtonClick}>Reset</button>
         <button style={STYLE_BUTTON} onClick={onClearButtonClick}>Clear +</button>
+        <button style={STYLE_BUTTON} onClick={onSortButtonClick}>Sort</button>
         <button style={STYLE_BUTTON} onClick={onAddButtonClick}>Add card</button>
       </header>
     );
@@ -66,6 +67,7 @@ const dispatchToProps = (dispatch) => ({
   onClearButtonClick: () => dispatch(getClearAction()),
   onAddButtonClick: () => dispatch(getAddAction()),
   onResetButtonClick: () => dispatch(getResetAction()),
+  onSortButtonClick: () => dispatch(getSortAction()),
   onRenaming: () => dispatch(getRenamingAction()),
   onRenamed: (newName) => dispatch(getRenamedAction(newName)),
 });
